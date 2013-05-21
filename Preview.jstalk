@@ -1,0 +1,56 @@
+// Preview file in Skala Preview (cmd p)
+
+var PREVIEW_APPLICATION = "Skala Preview";
+var PREVIEW_SLICE_NAME = "Preview";
+
+var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview";
+var PREVIEW_FILE_NAME = "preview.png";
+
+function preview() {
+  var previewSlice = findPreviewSlice();
+  if (previewSlice) {
+    writeAndOpenPreviewFile(previewSlice);
+  }
+  else {
+    [doc showMessage:"The Preview plugin requires a slice named '" + PREVIEW_SLICE_NAME + "'; Create one with 'File' -> 'Export...'"];
+  }
+}
+
+function findPreviewSlice() {
+  var slices = [[doc currentPage] slices];
+  for (var i = 0; i < [slices count]; i++) {
+    var slice = slices[i];
+    if ([slice name] == PREVIEW_SLICE_NAME) {
+      return slice;
+    }
+  }
+}
+
+function writeAndOpenPreviewFile(previewSlice) {
+  var previewFilePath = getPreviewFilePath();
+  [doc saveArtboardOrSlice:previewSlice toFile:previewFilePath];
+  openPreviewFile(previewFilePath);
+}
+
+function getPreviewFilePath() {
+  return getPreviewDirectoryCreatingIfNeeded() + "/" + PREVIEW_FILE_NAME;
+}
+
+function getPreviewDirectoryCreatingIfNeeded() {
+  var fileManager = [NSFileManager defaultManager];
+  var cachesURL = [[fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
+  var previewDirectory = [[cachesURL URLByAppendingPathComponent:PREVIEW_DIRECTORY_NAME] path];
+  if (![fileManager fileExistsAtPath:previewDirectory]) {
+    [fileManager createDirectoryAtPath:previewDirectory withIntermediateDirectories:true attributes:nil error:nil];
+  }
+  return previewDirectory;
+}
+
+function openPreviewFile(previewFilePath) {
+  if(![[NSWorkspace sharedWorkspace] openFile:previewFilePath withApplication:PREVIEW_APPLICATION]]) {
+    [doc showMessage:"Failed to open preview file; Make sure '" + PREVIEW_APPLICATION + "' is installed."];
+  }
+}
+
+preview();
+
