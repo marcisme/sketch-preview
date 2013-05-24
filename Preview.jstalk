@@ -20,7 +20,7 @@ function findPreviewSlice() {
   var slices = [[doc currentPage] allSlices];
   for (var i = 0; i < [slices count]; i++) {
     var slice = slices[i];
-    if ([slice name] == PREVIEW_SLICE_NAME) {
+    if ([slice name] == PREVIEW_SLICE_NAME || [slice name] == PREVIEW_SLICE_NAME.toLowerCase()) {
       return slice;
     }
   }
