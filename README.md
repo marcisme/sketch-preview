@@ -16,6 +16,8 @@ If you prefer a clipboard-based approach, you may want to check out
 or `~/Library/Application\ Support/sketch/plugins` as described in the Sketch
 [scripting guide](http://bohemiancoding.com/sketch/scripting).
 
+    If you're feeling brave, you can do something like this: `curl https://raw.github.com/marcisme/sketch-preview/master/Preview.jstalk -o ~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application\ Support/sketch/Plugins/Preview.jstalk`
+
 2. Enable scripting in Sketch if needed
 `Preferences -> General -> Enable Scripting`
 
