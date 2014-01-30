@@ -21,28 +21,16 @@
 // THE SOFTWARE.
 
 var PREVIEW_APPLICATION = "Skala Preview";
-var PREVIEW_SLICE_NAME = "Preview";
-
 var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview";
 var PREVIEW_FILE_NAME = "preview.png";
 
 function preview() {
-  var previewSlice = findPreviewSlice();
-  if (previewSlice) {
-    writeAndOpenPreviewFile(previewSlice);
+  var previewArtboard = [[doc currentPage] currentArtboard];
+  if (previewArtboard) {
+    writeAndOpenPreviewFile(previewArtboard);
   }
   else {
-    [doc showMessage:"The Preview plugin requires a slice named '" + PREVIEW_SLICE_NAME + "'; Create one with 'File' -> 'Export...'"];
-  }
-}
-
-function findPreviewSlice() {
-  var slices = [[doc currentPage] allSlices];
-  for (var i = 0; i < [slices count]; i++) {
-    var slice = slices[i];
-    if ([slice name] == PREVIEW_SLICE_NAME || [slice name] == PREVIEW_SLICE_NAME.toLowerCase()) {
-      return slice;
-    }
+    [doc showMessage:"The Preview plugin requires Artboards."];
   }
 }
 
