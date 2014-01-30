@@ -1,8 +1,8 @@
 # Introduction
 
-This [Sketch](http://bohemiancoding.com/sketch) plugin provides a preview command (⌘P) that will open the currently selected artboard in [Skala Preview](http://bjango.com/mac/skalapreview).
+This [Sketch](http://bohemiancoding.com/sketch) plugin provides a preview command (⌘P) that will open the currently selected artboard or slice named 'Preview' in [Skala Preview](http://bjango.com/mac/skalapreview).
 
-The plugin works by exporting the current artboard to Sketch's cache directory and opening that file in Skala Preview.
+The plugin works by exporting the current artboard or 'Preview' slice to Sketch's cache directory and opening that file in Skala Preview.
 
 # Installation
 
