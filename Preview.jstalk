@@ -27,13 +27,21 @@ var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview";
 var PREVIEW_FILE_NAME = "preview.png";
 
 function preview() {
-  var previewSlice = findPreviewSlice();
-  if (previewSlice) {
-    writeAndOpenPreviewFile(previewSlice);
+  var artboardOrSlice = findPreview();
+  if (artboardOrSlice) {
+    writeAndOpenPreviewFile(artboardOrSlice);
   }
   else {
-    [doc showMessage:"The Preview plugin requires a slice named '" + PREVIEW_SLICE_NAME + "'; Create one with 'File' -> 'Export...'"];
+    [doc showMessage:"The Preview plugin requires a selected Artboard or a slice named '" + PREVIEW_SLICE_NAME + "'"];
   }
+}
+
+function findPreview() {
+  return findPreviewSlice() || findPreviewArtboard();
+}
+
+function findPreviewArtboard() {
+  return [[doc currentPage] currentArtboard];
 }
 
 function findPreviewSlice() {
@@ -46,9 +54,9 @@ function findPreviewSlice() {
   }
 }
 
-function writeAndOpenPreviewFile(previewSlice) {
+function writeAndOpenPreviewFile(artboardOrSlice) {
   var previewFilePath = getPreviewFilePath();
-  [doc saveArtboardOrSlice:previewSlice toFile:previewFilePath];
+  [doc saveArtboardOrSlice:artboardOrSlice toFile:previewFilePath];
   openPreviewFile(previewFilePath);
 }
 
