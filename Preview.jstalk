@@ -48,10 +48,14 @@ function findPreviewSlice() {
   var slices = [[doc currentPage] allSlices];
   for (var i = 0; i < [slices count]; i++) {
     var slice = slices[i];
-    if ([slice name] == PREVIEW_SLICE_NAME || [slice name] == PREVIEW_SLICE_NAME.toLowerCase()) {
+    if (isPreviewSlice(slice)) {
       return slice;
     }
   }
+}
+
+function isPreviewSlice(slice) {
+  return [[slice name] localizedCaseInsensitiveCompare:PREVIEW_SLICE_NAME] == NSOrderedSame;
 }
 
 function writeAndOpenPreviewFile(artboardOrSlice) {
