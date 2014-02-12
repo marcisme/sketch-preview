@@ -61,22 +61,31 @@ function writeAndOpenPreviewFile(artboardOrSlice) {
 }
 
 function getPreviewFilePath() {
-  return getPreviewDirectoryCreatingIfNeeded() + "/" + PREVIEW_FILE_NAME;
+  return getPreviewDirectory() + "/" + PREVIEW_FILE_NAME;
 }
 
-function getPreviewDirectoryCreatingIfNeeded() {
+function getPreviewDirectory() {
   var fileManager = [NSFileManager defaultManager];
   var cachesURL = [[fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
   var previewDirectory = [[cachesURL URLByAppendingPathComponent:PREVIEW_DIRECTORY_NAME] path];
-  if (![fileManager fileExistsAtPath:previewDirectory]) {
-    [fileManager createDirectoryAtPath:previewDirectory withIntermediateDirectories:true attributes:nil error:nil];
-  }
+  _deprecatedDefensiveDirectoryCreation(fileManager, previewDirectory);
   return previewDirectory;
 }
 
 function openPreviewFile(previewFilePath) {
   if(![[NSWorkspace sharedWorkspace] openFile:previewFilePath withApplication:PREVIEW_APPLICATION]]) {
     [doc showMessage:"Failed to open preview file; Make sure '" + PREVIEW_APPLICATION + "' is installed."];
+  }
+}
+
+// Creating the preview directory is unnecessary as of Sketch 2.4.2. I don't
+// remember if not creating the directory caused a failure in previous
+// versions, or if I just did it because I've needed to on OSX in the past.
+// Leaving it like this until I can confirm removal won't break on earlier
+// versions of Sketch.
+function _deprecatedDefensiveDirectoryCreation(fileManager, previewDirectory) {
+  if (![fileManager fileExistsAtPath:previewDirectory]) {
+    [fileManager createDirectoryAtPath:previewDirectory withIntermediateDirectories:true attributes:nil error:nil];
   }
 }
 
