@@ -35,8 +35,7 @@ or `~/Library/Application\ Support/sketch/plugins` as described in the Sketch
 
 # Compatibility
 
-This plugin was most recently tested with the App Store version of Sketch 2.4.2
-and Skala Preview 1.6.0.
+This plugin was most recently tested with the Sketch Version 2.4.3 (5347), Skala Preview 1.6.0 (and Skala View for Andriod 1.2.2)
 
 # Author
 
