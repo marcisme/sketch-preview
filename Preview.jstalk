@@ -21,46 +21,46 @@
 // THE SOFTWARE.
 
 var PREVIEW_APPLICATION = "Skala Preview";
-var PREVIEW_SLICE_NAME = "Preview";
+var PREVIEW_EXPORTABLE_LAYER_NAME = "Preview";
 
 var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview";
 var PREVIEW_FILE_NAME = "preview.png";
 
 function preview() {
-  var artboardOrSlice = findPreview();
-  if (artboardOrSlice) {
-    writeAndOpenPreviewFile(artboardOrSlice);
+  var artboardOrExportableLayer = findPreview();
+  if (artboardOrExportableLayer) {
+    writeAndOpenPreviewFile(artboardOrExportableLayer);
   }
   else {
-    [doc showMessage:"The Preview plugin requires a selected Artboard or a slice named '" + PREVIEW_SLICE_NAME + "'"];
+    [doc showMessage:"The Preview plugin requires a selected Artboard or a exportable layer named '" + PREVIEW_EXPORTABLE_LAYER_NAME + "'"];
   }
 }
 
 function findPreview() {
-  return findPreviewSlice() || findPreviewArtboard();
+  return findPreviewExportableLayer() || findPreviewArtboard();
 }
 
 function findPreviewArtboard() {
   return [[doc currentPage] currentArtboard];
 }
 
-function findPreviewSlice() {
-  var slices = [[doc currentPage] allSlices];
-  for (var i = 0; i < [slices count]; i++) {
-    var slice = slices[i];
-    if (isPreviewSlice(slice)) {
-      return slice;
+function findPreviewExportableLayer() {
+  var layers = [[doc currentPage] exportableLayers];
+  for (var i = 0; i < [layers count]; i++) {
+    var layer = layers[i];
+    if (isPreviewExportableLayer(layer)) {
+      return layer;
     }
   }
 }
 
-function isPreviewSlice(slice) {
-  return [[slice name] localizedCaseInsensitiveCompare:PREVIEW_SLICE_NAME] == NSOrderedSame;
+function isPreviewExportableLayer(layer) {
+  return [[layer name] localizedCaseInsensitiveCompare:PREVIEW_EXPORTABLE_LAYER_NAME] == NSOrderedSame;
 }
 
-function writeAndOpenPreviewFile(artboardOrSlice) {
+function writeAndOpenPreviewFile(artboardOrExportableLayer) {
   var previewFilePath = getPreviewFilePath();
-  [doc saveArtboardOrSlice:artboardOrSlice toFile:previewFilePath];
+  [doc saveArtboardOrSlice:artboardOrExportableLayer toFile:previewFilePath];
   openPreviewFile(previewFilePath);
 }
 
