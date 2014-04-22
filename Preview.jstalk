@@ -20,11 +20,34 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+// configuration
+
+var DEBUG = false;
+
 var PREVIEW_APPLICATION = "Skala Preview";
 var PREVIEW_TARGET_NAME = "Preview";
 
 var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview";
+var LOG_PREFIX = "sketch-preview";
 var PREVIEW_FILE_NAME = "preview.png";
+
+// logging functions
+
+function debug(message) {
+  if (DEBUG) {
+    logWithPrefix(message);
+  }
+}
+
+function error(message) {
+  logWithPrefix(message);
+}
+
+function logWithPrefix(message) {
+  log(LOG_PREFIX + ": " + message);
+}
+
+// preview functions
 
 function preview() {
   var previewTarget = findPreviewTarget();
@@ -41,17 +64,28 @@ function findPreviewTarget() {
 }
 
 function findSelectedPreviewTarget() {
-  return [[doc currentPage] currentArtboard];
+  debug("Searching for selected Artboard");
+  var currentArtboard = [[doc currentPage] currentArtboard];
+  if (currentArtboard) {
+    debug("Found selected Artboard: " + [currentArtboard name]);
+  }
+  else {
+    debug("No Artboard selected");
+  }
+  return currentArtboard;
 }
 
 function findNamedPreviewTarget() {
+  debug("Searching for named preview slice: " + PREVIEW_TARGET_NAME);
   var targets = allTargets();
   for (var i = 0; i < [targets count]; i++) {
     var target = targets[i];
     if (isPreviewTarget([target name])) {
+      debug("Found named preview slice");
       return target;
     }
   }
+  debug("No named preview slice found");
 }
 
 function allTargets() {
