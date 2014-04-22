@@ -47,6 +47,7 @@ Big thanks to these people for their contributions.
 
 * [Jacob Elias](https://github.com/jelias) ([@\_jelias\_](https://twitter.com/_jelias_))
 * [David Klawitter](https://github.com/davidklaw)
+* [Tomas Linhart](https://github.com/TomasLinhart)
 
 # License
 

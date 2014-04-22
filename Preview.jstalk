@@ -45,12 +45,27 @@ function findSelectedPreviewTarget() {
 }
 
 function findNamedPreviewTarget() {
-  var slices = [[doc currentPage] allSlices];
-  for (var i = 0; i < [slices count]; i++) {
-    var slice = slices[i];
-    if (isPreviewTarget([slice name])) {
-      return slice;
+  var targets = allTargets();
+  for (var i = 0; i < [targets count]; i++) {
+    var target = targets[i];
+    if (isPreviewTarget([target name])) {
+      return target;
     }
+  }
+}
+
+function allTargets() {
+  var currentPage = [doc currentPage];
+  if ([currentPage respondsToSelector:"allSlices"]) {
+    // Sketch 2
+    return [currentPage allSlices];
+  }
+  else if ([currentPage respondsToSelector:"exportableLayers"]) {
+    // Sketch 3
+    return [currentPage exportableLayers];
+  } else {
+    // Return false, so we move on to the next strategy
+    return false;
   }
 }
 
