@@ -10,9 +10,13 @@ you prefer, you can name a slice `Preview`, and that slice will be used instead.
 Copy `Preview.jstalk` to the Sketch plugin directory. For Sketch 3, this
 should be:
 
-`~/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins`
+```
+~/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins
+```
 
-If you're feeling brave, you can do something like this:
+You can open this directory in the Finder with the `Plugins -> Reveal Plugins
+Folder...` menu item. Alternatively if you're feeling brave, you can do
+something like this:
 
 ```
 curl https://raw.github.com/marcisme/sketch-preview/master/Preview.jstalk \
@@ -45,6 +49,20 @@ if you've used the plugin with a newer version of any of these applications.
 * Sketch 3.0.1 (7597)
 * Skala Preview 1.6.0
 * Skala View for Andriod 1.2.2
+
+# Troubleshooting
+
+Some people have reported problems with the currently selected Artboard not
+being recognized as selected. I've noticed that in Sketch 2, you may have to
+select one of the layers within an Artboard as opposed to the Artboard itself.
+This does not seem to be an issue in Sketch 3.
+
+If you find any other issues, you can try to reproduce them with
+`PreviewTest.sketch`, found in the test directory of this repository. You can
+also edit the plugin file to set `DEBUG` to `true` and look at the output in
+`Console.app` to get a better idea of what is going on. Please open a new
+[issue](https://github.com/marcisme/sketch-preview/issues/new) if there is still
+a problem.
 
 # Author
 
