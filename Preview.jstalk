@@ -98,8 +98,9 @@ function allTargets() {
     // Sketch 3
     return [currentPage exportableLayers];
   } else {
-    // Return false, so we move on to the next strategy
-    return false;
+    error("Unable to search for target slice; Sketch implementation may have changed");
+    // Return empty array, so we move on to the next strategy
+    return [NSArray new];
   }
 }
 
