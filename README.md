@@ -1,29 +1,29 @@
 # Introduction
 
 This [Sketch](http://bohemiancoding.com/sketch) plugin provides a preview
-command (⌘P) that will open an Artboard or a specially named slice in
-[Skala Preview](http://bjango.com/mac/skalapreview). The plugin works by
-exporting the current Artboard or the first slice named `Preview` to Sketch's
-cache directory and opening that file in Skala Preview.
-
-If you prefer a clipboard-based approach, you may want to check out
-[crop_Artboard](https://github.com/FredericJacobs/crop_Artboard).
+command (⌘P) that will export the currently selected Artboard and open the
+resulting image file in [Skala Preview](http://bjango.com/mac/skalapreview). If
+you prefer, you can name a slice `Preview`, and that slice will be used instead.
 
 # Installation
 
-1. Copy the plugin file to either
-`~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application\ Support/sketch/Plugins`
-or `~/Library/Application\ Support/sketch/plugins` as described in the Sketch
-[scripting guide](http://bohemiancoding.com/sketch/scripting).
+Copy `Preview.jstalk` to the Sketch plugin directory. For Sketch 3, this
+should be:
 
-    If you're feeling brave, you can do something like this:
-    ```
-    curl https://raw.github.com/marcisme/sketch-preview/master/Preview.jstalk \
-        -o ~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application\ Support/sketch/Plugins/Preview.jstalk
-    ```
+`~/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins`
 
-2. Enable scripting if using an older version of Sketch that has the option.
-`Preferences -> General -> Enable Scripting`
+If you're feeling brave, you can do something like this:
+
+```
+curl https://raw.github.com/marcisme/sketch-preview/master/Preview.jstalk \
+    -o ~/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins/Preview.jstalk
+```
+
+If you're still using Sketch 2, your plugin directory should be either of the
+following for App Store or direct download versions respectively.
+
+* `~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application\ Support/sketch/Plugins`
+* `~/Library/Application\ Support/sketch/plugins`
 
 # Usage
 
@@ -35,7 +35,16 @@ or `~/Library/Application\ Support/sketch/plugins` as described in the Sketch
 
 # Compatibility
 
-This plugin was most recently tested with the Sketch Version 2.4.3 (5347), Skala Preview 1.6.0 (and Skala View for Andriod 1.2.2)
+This plugin has been used successfully with the following versions of software.
+Not all combinations of each application have been tested, but this should give
+you some idea of the latest versions that have worked for other people. Feel
+free to submit a [pull request](https://github.com/marcisme/sketch-preview/compare/)
+if you've used the plugin with a newer version of any of these applications.
+
+* Sketch 2.4.4 (5370)
+* Sketch 3.0.1 (7597)
+* Skala Preview 1.6.0
+* Skala View for Andriod 1.2.2
 
 # Author
 
