@@ -7,8 +7,14 @@ you prefer, you can name a slice `Preview`, and that slice will be used instead.
 
 # Installation
 
-Copy `Preview.jstalk` to the Sketch plugin directory. For Sketch 3, this
-should be:
+The easiest way to install the plugin is to
+[download](https://github.com/marcisme/sketch-preview/archive/master.zip) the
+latest version of this project and double-click the `Preview.sketchplugin` file.
+
+## Manual Installation
+
+You can also copy `Preview.sketchplugin` to the Sketch plugin directory
+yourself. For Sketch 3, this should be:
 
 ```
 ~/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins
@@ -19,8 +25,8 @@ Folder...` menu item. Alternatively if you're feeling brave, you can do
 something like this:
 
 ```
-curl https://raw.github.com/marcisme/sketch-preview/master/Preview.jstalk \
-    -o ~/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins/Preview.jstalk
+curl https://raw.github.com/marcisme/sketch-preview/master/Preview.sketchplugin \
+    -o ~/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins/Preview.sketchplugin
 ```
 
 If you're still using Sketch 2, your plugin directory should be either of the
@@ -60,7 +66,7 @@ This does not seem to be an issue in Sketch 3.
 If you find any other issues, you can try to reproduce them with
 `PreviewTest.sketch`, found in the test directory of this repository. You can
 also edit the plugin file to set `DEBUG` to `true` and look at the output in
-`Console.app` to get a better idea of what is going on. Please open a new
+`Console.app` to get a better idea of what is going on. Please open an
 [issue](https://github.com/marcisme/sketch-preview/issues/new) if there is still
 a problem.
 

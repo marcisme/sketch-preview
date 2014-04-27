@@ -2,14 +2,15 @@
 
 # This script is intended for dev use only.
 
+PLUGIN_FILE="Preview.sketchplugin"
 SKETCH_2_PLUGIN_DIR="$HOME/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application Support/sketch/Plugins/"
 SKETCH_3_PLUGIN_DIR="$HOME/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application Support/com.bohemiancoding.sketch3/Plugins/"
 
 if [ -d "$SKETCH_2_PLUGIN_DIR" ]; then
-  cp Preview.jstalk "$SKETCH_2_PLUGIN_DIR"
+  cp "$PLUGIN_FILE" "$SKETCH_2_PLUGIN_DIR"
 fi
 
 if [ -d "$SKETCH_3_PLUGIN_DIR" ]; then
-  cp Preview.jstalk "$SKETCH_3_PLUGIN_DIR"
+  cp "$PLUGIN_FILE" "$SKETCH_3_PLUGIN_DIR"
 fi
 
