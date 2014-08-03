@@ -22,124 +22,124 @@
 
 // configuration
 
-var DEBUG = false;
+var DEBUG = false
 
-var PREVIEW_APPLICATION = "Skala Preview";
-var PREVIEW_TARGET_NAME = "Preview";
+var PREVIEW_APPLICATION = "Skala Preview"
+var PREVIEW_TARGET_NAME = "Preview"
 
-var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview";
-var LOG_PREFIX = "sketch-preview";
-var PREVIEW_FILE_NAME = "preview.png";
+var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview"
+var LOG_PREFIX = "sketch-preview"
+var PREVIEW_FILE_NAME = "preview.png"
 
 // logging functions
 
 function debug(message) {
   if (DEBUG) {
-    logWithPrefix(message);
+    logWithPrefix(message)
   }
 }
 
 function error(message) {
-  logWithPrefix(message);
+  logWithPrefix(message)
 }
 
 function logWithPrefix(message) {
-  log(LOG_PREFIX + ": " + message);
+  log(LOG_PREFIX + ": " + message)
 }
 
 // preview functions
 
 function preview() {
-  var previewTarget = findPreviewTarget();
+  var previewTarget = findPreviewTarget()
   if (previewTarget) {
-    writeAndOpenPreviewFile(previewTarget);
+    writeAndOpenPreviewFile(previewTarget)
   }
   else {
-    [doc showMessage:"The Preview plugin requires a selected Artboard or a slice named '" + PREVIEW_TARGET_NAME + "'"];
+    [doc showMessage:"The Preview plugin requires a selected Artboard or a slice named '" + PREVIEW_TARGET_NAME + "'"]
   }
 }
 
 function findPreviewTarget() {
-  return findNamedPreviewTarget() || findSelectedPreviewTarget();
+  return findNamedPreviewTarget() || findSelectedPreviewTarget()
 }
 
 function findSelectedPreviewTarget() {
-  debug("Searching for selected Artboard");
-  var currentArtboard = [[doc currentPage] currentArtboard];
+  debug("Searching for selected Artboard")
+  var currentArtboard = [[doc currentPage] currentArtboard]
   if (currentArtboard) {
-    debug("Found selected Artboard: " + [currentArtboard name]);
+    debug("Found selected Artboard: " + [currentArtboard name])
   }
   else {
-    debug("No Artboard selected");
+    debug("No Artboard selected")
   }
-  return currentArtboard;
+  return currentArtboard
 }
 
 function findNamedPreviewTarget() {
-  debug("Searching for named preview slice: " + PREVIEW_TARGET_NAME);
-  var targets = allTargets();
+  debug("Searching for named preview slice: " + PREVIEW_TARGET_NAME)
+  var targets = allTargets()
   for (var i = 0; i < [targets count]; i++) {
-    var target = targets[i];
+    var target = targets[i]
     if (isPreviewTarget([target name])) {
-      debug("Found named preview slice");
-      return target;
+      debug("Found named preview slice")
+      return target
     }
   }
-  debug("No named preview slice found");
+  debug("No named preview slice found")
 }
 
 function allTargets() {
-  var currentPage = [doc currentPage];
+  var currentPage = [doc currentPage]
   if ([currentPage respondsToSelector:"allSlices"]) {
     // Sketch 2
-    return [currentPage allSlices];
+    return [currentPage allSlices]
   }
   else if ([currentPage respondsToSelector:"exportableLayers"]) {
     // Sketch 3
-    return [currentPage exportableLayers];
+    return [currentPage exportableLayers]
   } else {
-    error("Unable to search for target slice; Sketch implementation may have changed");
+    error("Unable to search for target slice; Sketch implementation may have changed")
     // Return empty array, so we move on to the next strategy
-    return [NSArray new];
+    return [NSArray new]
   }
 }
 
 function isPreviewTarget(name) {
-  return [name localizedCaseInsensitiveCompare:PREVIEW_TARGET_NAME] == NSOrderedSame;
+  return [name localizedCaseInsensitiveCompare:PREVIEW_TARGET_NAME] == NSOrderedSame
 }
 
 function writeAndOpenPreviewFile(previewTarget) {
-  var previewFilePath = getPreviewFilePath();
-  [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath];
-  openPreviewFile(previewFilePath);
+  var previewFilePath = getPreviewFilePath()
+  [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
+  openPreviewFile(previewFilePath)
 }
 
 function resizedPreviewTarget(previewTarget) {
-  var config = new Config();
+  var config = new Config()
   if (config.getPreviewSize()) {
-    return resizedLayer(previewTarget, config.getPreviewSize());
+    return resizedLayer(previewTarget, config.getPreviewSize())
   }
-  return previewTarget;
+  return previewTarget
 }
 
 function resizedLayer(layer, size) {
-  var rect = [[layer absoluteRect] rect];
-  return [MSExportRequest requestWithRect:rect scale:size];
+  var rect = [[layer absoluteRect] rect]
+  return [MSExportRequest requestWithRect:rect scale:size]
 }
 
 function getPreviewFilePath() {
-  return getPreviewDirectory() + "/" + PREVIEW_FILE_NAME;
+  return getPreviewDirectory() + "/" + PREVIEW_FILE_NAME
 }
 
 function getPreviewDirectory() {
-  var fileManager = [NSFileManager defaultManager];
-  var cachesURL = [[fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
-  return [[cachesURL URLByAppendingPathComponent:PREVIEW_DIRECTORY_NAME] path];
+  var fileManager = [NSFileManager defaultManager]
+  var cachesURL = [[fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject]
+  return [[cachesURL URLByAppendingPathComponent:PREVIEW_DIRECTORY_NAME] path]
 }
 
 function openPreviewFile(previewFilePath) {
   if(![[NSWorkspace sharedWorkspace] openFile:previewFilePath withApplication:PREVIEW_APPLICATION]]) {
-    [doc showMessage:"Failed to open preview file; Make sure '" + PREVIEW_APPLICATION + "' is installed."];
+    [doc showMessage:"Failed to open preview file; Make sure '" + PREVIEW_APPLICATION + "' is installed."]
   }
 }
 
@@ -199,5 +199,5 @@ function Config() {
 
 /* end of evil */
 
-preview();
+preview()
 
