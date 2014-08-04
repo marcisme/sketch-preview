@@ -50,6 +50,10 @@ function logWithPrefix(message) {
 // preview functions
 
 function preview() {
+  if (!isSupportedVersion()) {
+    [doc showMessage:"Sketch 2 is no longer supported"]
+    return
+  }
   var previewTarget = findPreviewTarget()
   if (previewTarget) {
     writeAndOpenPreviewFile(previewTarget)
@@ -89,14 +93,9 @@ function findNamedPreviewTarget() {
 }
 
 function allTargets() {
-  var currentPage = [doc currentPage]
-  if ([currentPage respondsToSelector:"allSlices"]) {
-    // Sketch 2
-    return [currentPage allSlices]
-  }
-  else if ([currentPage respondsToSelector:"exportableLayers"]) {
+  if (isSupportedVersion()) {
     // Sketch 3
-    return [currentPage exportableLayers]
+    return [[doc currentPage] exportableLayers]
   } else {
     error("Unable to search for target slice; Sketch implementation may have changed")
     // Return empty array, so we move on to the next strategy
@@ -144,6 +143,10 @@ function openPreviewFile(previewFilePath) {
 }
 
 /* Begin common code */
+
+function isSupportedVersion() {
+  return [[doc currentPage] respondsToSelector:"exportableLayers"]
+}
 
 function Config() {
 

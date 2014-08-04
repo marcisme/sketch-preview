@@ -22,6 +22,10 @@
 
 
 function requestPreviewSize(config) {
+  if (!isSupportedVersion()) {
+    [doc showMessage:"Sketch 2 is not supported"]
+    return
+  }
 
   var accessory = [[NSComboBox alloc] initWithFrame:NSMakeRect(0,0,200,25)]
   [accessory addItemsWithObjectValues:config.PREVIEW_SIZE_LABELS]
@@ -43,6 +47,10 @@ function requestPreviewSize(config) {
 }
 
 /* Begin common code */
+
+function isSupportedVersion() {
+  return [[doc currentPage] respondsToSelector:"exportableLayers"]
+}
 
 function Config() {
 

@@ -21,6 +21,10 @@
 
 /* Begin common code */
 
+function isSupportedVersion() {
+  return [[doc currentPage] respondsToSelector:"exportableLayers"]
+}
+
 function Config() {
 
   this.PREVIEW_SIZE_LABELS = ["default", "0.5x", "1x", "1.5x", "2x", "3x"]
