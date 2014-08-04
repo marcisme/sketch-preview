@@ -1,3 +1,8 @@
+# v0.4.0
+
+* Create `Set Preview Size` plugin
+* Remove Sketch 2 support
+
 # v0.3.0
 
 * Remove deprecated directory creation function
