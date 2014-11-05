@@ -1,5 +1,3 @@
-// Configure the preview size (cmd option p)
-
 // Copyright (c) 2014 Marc Schwieterman
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,33 +18,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
-function requestPreviewSize(config) {
-  if (!isSupportedVersion()) {
-    [doc showMessage:"Sketch 2 is not supported"]
-    return
-  }
-
-  var accessory = [[NSComboBox alloc] initWithFrame:NSMakeRect(0,0,200,25)]
-  [accessory addItemsWithObjectValues:config.PREVIEW_SIZE_LABELS]
-  [accessory selectItemAtIndex:config.getPreviewSizeLabelIndex()]
-
-  var alert = [[NSAlert alloc] init]
-  [alert setMessageText:"Choose the preview size"]
-  [alert addButtonWithTitle:"Save"]
-  [alert addButtonWithTitle:"Cancel"]
-  [alert setAccessoryView:accessory]
-
-  var buttonReturnValue = [alert runModal]
-  var previewSizeLabelIndex = [accessory indexOfSelectedItem]
-
-  if (buttonReturnValue === NSAlertFirstButtonReturn) {
-    config.setPreviewSizeLabelIndex(previewSizeLabelIndex)
-    config.save()
-  }
-}
-
-/* Begin common code */
 
 function isSupportedVersion() {
   return [[doc currentPage] respondsToSelector:"exportableLayers"]
@@ -97,10 +68,4 @@ function Config() {
   }
 
 }
-
-/* End common code */
-
-var config = new Config()
-
-requestPreviewSize(config)
 
