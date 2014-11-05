@@ -25,13 +25,20 @@ function isSupportedVersion() {
 
 function Config() {
 
-  this.PREVIEW_SIZE_LABELS = ["default", "0.5x", "1x", "1.5x", "2x", "3x"]
+  this.PREVIEW_SIZE_LABELS = ["default size", "0.5x", "1x", "1.5x", "2x", "3x"]
 
   var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview"
   var CONFIG_FILE_NAME = "/config.plist"
-  var PREVIEW_SIZES = [0.5, 1.0, 1.5, 2.0, 3.0]
   var configDictionary = loadConfigDictionary()
+
+  var PREVIEW_SIZES = [0.5, 1.0, 1.5, 2.0, 3.0]
   var PREVIEW_SIZE_INDEX_KEY = "previewSizeIndex"
+
+  var SIMULATE_DISPLAY_ZOOM_KEY = "simulateDisplayZoom"
+
+  this.affectsSize = function() {
+    return this.getPreviewSize() || this.shouldSimulateDisplayZoom()
+  }
 
   this.getPreviewSize = function() {
     var previewSizeIndex = configDictionary[PREVIEW_SIZE_INDEX_KEY]
@@ -50,6 +57,14 @@ function Config() {
 
   this.setPreviewSizeLabelIndex = function(previewSizeLabelIndex) {
     configDictionary[PREVIEW_SIZE_INDEX_KEY] = previewSizeLabelIndex - 1
+  }
+
+  this.shouldSimulateDisplayZoom = function() {
+    return configDictionary[SIMULATE_DISPLAY_ZOOM_KEY] == 1
+  }
+
+  this.setSimulateDisplayZoom = function(simulateDisplayZoom) {
+    configDictionary[SIMULATE_DISPLAY_ZOOM_KEY] = simulateDisplayZoom
   }
 
   this.save = function() {

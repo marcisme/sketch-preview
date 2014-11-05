@@ -29,21 +29,32 @@ function requestPreviewSize(config) {
     return
   }
 
-  var accessory = [[NSComboBox alloc] initWithFrame:NSMakeRect(0,0,200,25)]
-  [accessory addItemsWithObjectValues:config.PREVIEW_SIZE_LABELS]
-  [accessory selectItemAtIndex:config.getPreviewSizeLabelIndex()]
+  var accessory = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 200, 50)]
+
+  var displayZoomButton = [[NSButton alloc] initWithFrame:NSMakeRect(0, 25, 200, 25)]
+  [displayZoomButton setButtonType:NSSwitchButton]
+  [displayZoomButton setTitle:"Simulate iPhone Display Zoom"]
+  [displayZoomButton setState:(config.shouldSimulateDisplayZoom() ? NSOnState : NSOffState)]
+  [accessory addSubview:displayZoomButton]
+
+  var sizeComboBox = [[NSComboBox alloc] initWithFrame:NSMakeRect(0,0,200,25)]
+  [sizeComboBox addItemsWithObjectValues:config.PREVIEW_SIZE_LABELS]
+  [sizeComboBox selectItemAtIndex:config.getPreviewSizeLabelIndex()]
+  [accessory addSubview:sizeComboBox]
 
   var alert = [[NSAlert alloc] init]
-  [alert setMessageText:"Choose the preview size"]
+  [alert setMessageText:"Choose preview options"]
   [alert addButtonWithTitle:"Save"]
   [alert addButtonWithTitle:"Cancel"]
   [alert setAccessoryView:accessory]
 
   var buttonReturnValue = [alert runModal]
-  var previewSizeLabelIndex = [accessory indexOfSelectedItem]
+  var previewSizeLabelIndex = [sizeComboBox indexOfSelectedItem]
+  var simulateDisplayZoom = [displayZoomButton state] === NSOnState
 
   if (buttonReturnValue === NSAlertFirstButtonReturn) {
     config.setPreviewSizeLabelIndex(previewSizeLabelIndex)
+    config.setSimulateDisplayZoom(simulateDisplayZoom)
     config.save()
   }
 }
