@@ -25,7 +25,13 @@ function isSupportedVersion() {
 
 function Config() {
 
-  this.PREVIEW_SIZE_LABELS = ["default size", "0.5x", "1x", "1.5x", "2x", "3x"]
+  this.PREVIEW_SIZE_LABELS = ["0.5x", "1x", "1.5x", "2x", "3x"]
+  this.SCALING_STRATEGIES = [
+    new IPhoneAutoStrategy(),
+    new IPhone6Strategy(),
+    new IPhone6pStrategy(),
+    new ExplicitSizeStrategy(this)
+  ]
 
   var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview"
   var CONFIG_FILE_NAME = "/config.plist"
@@ -34,11 +40,7 @@ function Config() {
   var PREVIEW_SIZES = [0.5, 1.0, 1.5, 2.0, 3.0]
   var PREVIEW_SIZE_INDEX_KEY = "previewSizeIndex"
 
-  var SIMULATE_DISPLAY_ZOOM_KEY = "simulateDisplayZoom"
-
-  this.affectsSize = function() {
-    return this.getPreviewSize() || this.shouldSimulateDisplayZoom()
-  }
+  var SCALING_STRATEGY_ID_KEY = "scalingStrategyId"
 
   this.getPreviewSize = function() {
     var previewSizeIndex = configDictionary[PREVIEW_SIZE_INDEX_KEY]
@@ -48,23 +50,30 @@ function Config() {
   }
 
   this.getPreviewSizeLabelIndex = function() {
-    if (this.getPreviewSize()) {
-      return configDictionary[PREVIEW_SIZE_INDEX_KEY] + 1
-    } else {
-      return 0
-    }
+    return configDictionary[PREVIEW_SIZE_INDEX_KEY] || 1
   }
 
   this.setPreviewSizeLabelIndex = function(previewSizeLabelIndex) {
-    configDictionary[PREVIEW_SIZE_INDEX_KEY] = previewSizeLabelIndex - 1
+    configDictionary[PREVIEW_SIZE_INDEX_KEY] = [NSNumber numberWithInteger:previewSizeLabelIndex]
   }
 
-  this.shouldSimulateDisplayZoom = function() {
-    return configDictionary[SIMULATE_DISPLAY_ZOOM_KEY] == 1
+  this.getScalingStrategy = function() {
+    var scalingStrategyId = this.getScalingStrategyId()
+    var scalingStrategy
+    this.SCALING_STRATEGIES.forEach(function(strategy) {
+      if (scalingStrategyId == strategy.strategyId) {
+        scalingStrategy = strategy
+      }
+    })
+    return scalingStrategy
   }
 
-  this.setSimulateDisplayZoom = function(simulateDisplayZoom) {
-    configDictionary[SIMULATE_DISPLAY_ZOOM_KEY] = simulateDisplayZoom
+  this.getScalingStrategyId = function() {
+    return configDictionary[SCALING_STRATEGY_ID_KEY] || 1
+  }
+
+  this.setScalingStrategyId = function(scalingStrategyId) {
+    configDictionary[SCALING_STRATEGY_ID_KEY] = [NSNumber numberWithInteger:scalingStrategyId]
   }
 
   this.save = function() {
@@ -80,6 +89,107 @@ function Config() {
     var fileManager = [NSFileManager defaultManager]
     var applicationSupport = [[fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject]
     return [applicationSupport URLByAppendingPathComponent:PREVIEW_DIRECTORY_NAME + "/" + CONFIG_FILE_NAME]
+  }
+
+}
+
+function IPhoneCalculator() {
+
+  this.sizeFor5 = 2
+  this.sizeFor6 = 2
+  this.sizeFor6p = 3
+
+  this.is5 = function(rect) {
+    return isCompatibleRect(rect, [320, 568])
+  }
+
+  this.is6 = function(rect) {
+    return isCompatibleRect(rect, [375, 667])
+  }
+
+  this.is6p = function(rect) {
+    return isCompatibleRect(rect, [414, 736])
+  }
+
+  this.scaleTo6 = function(rect) {
+    var largestDimension = Math.max(rect.size.width, rect.size.height)
+    return 1334 / largestDimension
+  }
+
+  this.scaleTo6p = function(rect) {
+    var largestDimension = Math.max(rect.size.width, rect.size.height)
+    return 2208 / largestDimension
+  }
+
+  function isCompatibleRect(rect, dimensions) {
+    var size = rect.size
+    if (size.width == dimensions[0] && size.height == dimensions[1]) {
+      return true
+    }
+    if (size.height == dimensions[0] || size.width == dimensions[1]) {
+      return true
+    }
+    return false
+  }
+
+}
+
+// The strategyId properties should be > 0 because they're being used as tag
+// values in the UI, and we want to avoid the case where a tag hasn't been
+// set and defaults to 0.
+
+function ExplicitSizeStrategy(config) {
+
+  this.strategyId = 1
+  this.label = "Explicit scaling"
+  this.config = config
+
+  this.sizeForRect = function(rect) {
+    return this.config.getPreviewSize()
+  }
+
+}
+
+function IPhoneAutoStrategy() {
+
+  this.strategyId = 2
+  this.label = "Scale for iPhone (320x568@2x, 375x667@2x, 414x736@3x)",
+  this.iPhone = new IPhoneCalculator()
+
+  this.sizeForRect = function(rect) {
+    if (this.iPhone.is5(rect)) { return this.iPhone.sizeFor5 }
+    if (this.iPhone.is6(rect)) { return this.iPhone.sizeFor6 }
+    if (this.iPhone.is6p(rect)) { return this.iPhone.sizeFor6p }
+    return 1
+  }
+
+}
+
+function IPhone6Strategy() {
+
+  this.strategyId = 3
+  this.label = "Simulate iPhone 6 scaling (320x568 to 750x1334, 375x667@2x)",
+  this.iPhone = new IPhoneCalculator()
+
+  this.sizeForRect = function(rect) {
+    if (this.iPhone.is5(rect)) { return this.iPhone.scaleTo6(rect) }
+    if (this.iPhone.is6(rect)) { return this.iPhone.sizeFor6 }
+    return 1
+  }
+
+}
+
+function IPhone6pStrategy() {
+
+  this.strategyId = 4
+  this.label = "Simulate iPhone 6+ scaling (320x568, 375x667 to 1242x2208, 414x736@3x)",
+  this.iPhone = new IPhoneCalculator()
+
+  this.sizeForRect = function(rect) {
+    if (this.iPhone.is5(rect)) { return this.iPhone.scaleTo6p(rect) }
+    if (this.iPhone.is6(rect)) { return this.iPhone.scaleTo6p(rect) }
+    if (this.iPhone.is6p(rect)) { return this.iPhone.sizeFor6p }
+    return 1
   }
 
 }

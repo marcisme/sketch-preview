@@ -117,36 +117,10 @@ function writeAndOpenPreviewFile(previewTarget) {
   openPreviewFile(previewFilePath)
 }
 
-function resizedPreviewTarget(previewTarget) {
-  if (config.affectsSize()) {
-    return resizedLayer(previewTarget, config.getPreviewSize())
-  }
-  return previewTarget
-}
-
-function resizedLayer(layer, size) {
+function resizedPreviewTarget(layer) {
   var rect = [[layer absoluteRect] rect]
-  var size = displayZoomSize(rect, size)
+  var size = config.getScalingStrategy().sizeForRect(rect)
   return [MSExportRequest requestWithRect:rect scale:size]
-}
-
-function displayZoomSize(rect, size) {
-  var d = {
-    iPhone5HeightAt1x: 568,
-    iPhone6HeightAt1x: 667,
-    iPhone6HeightAt2x: 1334,
-    iPhone6pHeightAt3x: 2208
-  }
-  if (config.shouldSimulateDisplayZoom()) {
-    var largestDimension = Math.max(rect.size.width, rect.size.height)
-    if (largestDimension === d.iPhone5HeightAt1x) {
-      return d.iPhone6HeightAt2x / d.iPhone5HeightAt1x
-    }
-    if (largestDimension === d.iPhone6HeightAt1x) {
-      return d.iPhone6pHeightAt3x / d.iPhone6HeightAt1x
-    }
-  }
-  return size
 }
 
 function getPreviewFilePath() {
