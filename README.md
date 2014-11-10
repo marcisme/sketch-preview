@@ -28,7 +28,7 @@ Folder...` menu item.
 * Select `Preview Setup...` from the plugins menu or Press ⌘⌥P to configure the
   plugin
 
-# Scaling Modes
+## Scaling Modes
 
 There are now several scaling modes intended for iOS design. These modes either
 change the output size to *2x* or *3x* based on Artboard dimensions, or they
