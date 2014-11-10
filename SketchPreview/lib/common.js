@@ -112,13 +112,15 @@ function IPhoneCalculator() {
   }
 
   this.scaleTo6 = function(rect) {
-    var largestDimension = Math.max(rect.size.width, rect.size.height)
-    return 1334 / largestDimension
+    return 1334 / largestDimension(rect)
   }
 
   this.scaleTo6p = function(rect) {
-    var largestDimension = Math.max(rect.size.width, rect.size.height)
-    return 2208 / largestDimension
+    return 2208 / largestDimension(rect)
+  }
+
+  function largestDimension(rect) {
+    return Math.max(rect.size.width, rect.size.height)
   }
 
   function isCompatibleRect(rect, dimensions) {
@@ -168,7 +170,7 @@ function IPhoneAutoStrategy() {
 function IPhone6Strategy() {
 
   this.strategyId = 3
-  this.label = "Simulate iPhone 6 scaling (320x568 to 750x1334, 375x667@2x)",
+  this.label = "Simulate iPhone 6 scaling (320x568 to 750x1334*, 375x667@2x)",
   this.iPhone = new IPhoneCalculator()
 
   this.sizeForRect = function(rect) {
@@ -182,7 +184,7 @@ function IPhone6Strategy() {
 function IPhone6pStrategy() {
 
   this.strategyId = 4
-  this.label = "Simulate iPhone 6+ scaling (320x568, 375x667 to 1242x2208, 414x736@3x)",
+  this.label = "Simulate iPhone 6+ scaling (320x568, 375x667 to 1242x2208*, 414x736@3x)",
   this.iPhone = new IPhoneCalculator()
 
   this.sizeForRect = function(rect) {

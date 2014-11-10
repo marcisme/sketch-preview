@@ -77,6 +77,7 @@ function requestPreviewSize(config) {
 
   var alert = [[NSAlert alloc] init]
   [alert setMessageText:"Preview Setup"]
+  [alert setInformativeText:"* Simulated scaling modes are experimental"]
   [alert addButtonWithTitle:"Save"]
   [alert addButtonWithTitle:"Cancel"]
   [alert setAccessoryView:accessory]
