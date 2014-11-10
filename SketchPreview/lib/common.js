@@ -143,7 +143,7 @@ function IPhoneCalculator() {
 function ExplicitSizeStrategy(config) {
 
   this.strategyId = 1
-  this.label = "Explicit scaling"
+  this.label = "Scale to explicit size"
   this.config = config
 
   this.sizeForRect = function(rect) {
