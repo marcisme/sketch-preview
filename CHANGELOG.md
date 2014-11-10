@@ -1,3 +1,9 @@
+# v0.5.0
+
+* Reorganize project to use includes
+* Rename config plugin
+* Introduce scaling modes
+
 # v0.4.0
 
 * Create `Set Preview Size` plugin
