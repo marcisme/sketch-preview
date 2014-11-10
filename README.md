@@ -10,17 +10,9 @@ instead.
 
 # Installation
 
-The easiest way to install the plugin is to
-[download](https://github.com/marcisme/sketch-preview/archive/master.zip) the
-latest version of this project and double-click the `Preview.sketchplugin` and
-`Set Preview Size.sketchplugin` files.
-
-Installation of the `Set Preview Size` plugin is optional.
-
-## Manual Installation
-
-You can also copy the plugin files to the Sketch plugin directory yourself. For
-Sketch 3, this should be:
+[Download](https://github.com/marcisme/sketch-preview/archive/master.zip) the
+latest version of this project, and copy the `SketchPreview` directory into the
+Sketch plugin directory. For Sketch 3, this should be:
 
 ```
 ~/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins
@@ -31,10 +23,19 @@ Folder...` menu item.
 
 # Usage
 
-* Make sure you have an Artboard selected or a device screen-sized slice named
-  `Preview`
+* Make sure you have an Artboard selected
 * Select `Preview` from the Plugins menu or press ⌘P
-* Select `Set Preview Size` from the plugins menu or Press ⌘⌥P
+* Select `Preview Setup...` from the plugins menu or Press ⌘⌥P to configure the
+  plugin
+
+# Scaling Modes
+
+There are now several scaling modes intended for iOS design. These modes either
+change the output size to *2x* or *3x* based on Artboard dimensions, or they
+attempt to scale the preview up to simulate the Display Zoom or compatibility
+modes available on the iPhones 6. The simulated modes are not currently
+accurate, and the final image will be 1 to 2 pixels off in the smaller
+dimension.
 
 # Compatibility
 
@@ -44,7 +45,7 @@ you some idea of the latest versions that have worked for other people. Feel
 free to submit a [pull request](https://github.com/marcisme/sketch-preview/compare/)
 if you've used the plugin with a newer version of any of these applications.
 
-* Sketch 3.0.4 (8053)
+* Sketch 3.1.1 (8761)
 * Skala Preview 1.6.0
 * Skala View for Andriod 1.2.2
 
