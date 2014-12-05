@@ -25,15 +25,15 @@ function IPhoneCalculator() {
   this.sizeFor6 = 2
   this.sizeFor6p = 3
 
-  this.is5 = function(rect) {
+  this.isArtboardFor5 = function(rect) {
     return isCompatibleRect(rect, [320, 568])
   }
 
-  this.is6 = function(rect) {
+  this.isArtboardFor6 = function(rect) {
     return isCompatibleRect(rect, [375, 667])
   }
 
-  this.is6p = function(rect) {
+  this.isArtboardFor6p = function(rect) {
     return isCompatibleRect(rect, [414, 736])
   }
 
@@ -54,7 +54,7 @@ function IPhoneCalculator() {
     if (size.width == dimensions[0] && size.height == dimensions[1]) {
       return true
     }
-    if (size.height == dimensions[0] || size.width == dimensions[1]) {
+    if (size.height == dimensions[0] && size.width == dimensions[1]) {
       return true
     }
     return false
@@ -85,9 +85,9 @@ function IPhoneAutoStrategy() {
   this.iPhone = new IPhoneCalculator()
 
   this.sizeForRect = function(rect) {
-    if (this.iPhone.is5(rect)) { return this.iPhone.sizeFor5 }
-    if (this.iPhone.is6(rect)) { return this.iPhone.sizeFor6 }
-    if (this.iPhone.is6p(rect)) { return this.iPhone.sizeFor6p }
+    if (this.iPhone.isArtboardFor5(rect)) { return this.iPhone.sizeFor5 }
+    if (this.iPhone.isArtboardFor6(rect)) { return this.iPhone.sizeFor6 }
+    if (this.iPhone.isArtboardFor6p(rect)) { return this.iPhone.sizeFor6p }
     return 1
   }
 
@@ -100,8 +100,8 @@ function IPhone6Strategy() {
   this.iPhone = new IPhoneCalculator()
 
   this.sizeForRect = function(rect) {
-    if (this.iPhone.is5(rect)) { return this.iPhone.scaleTo6(rect) }
-    if (this.iPhone.is6(rect)) { return this.iPhone.sizeFor6 }
+    if (this.iPhone.isArtboardFor5(rect)) { return this.iPhone.scaleTo6(rect) }
+    if (this.iPhone.isArtboardFor6(rect)) { return this.iPhone.sizeFor6 }
     return 1
   }
 
@@ -114,9 +114,9 @@ function IPhone6pStrategy() {
   this.iPhone = new IPhoneCalculator()
 
   this.sizeForRect = function(rect) {
-    if (this.iPhone.is5(rect)) { return this.iPhone.scaleTo6p(rect) }
-    if (this.iPhone.is6(rect)) { return this.iPhone.scaleTo6p(rect) }
-    if (this.iPhone.is6p(rect)) { return this.iPhone.sizeFor6p }
+    if (this.iPhone.isArtboardFor5(rect)) { return this.iPhone.scaleTo6p(rect) }
+    if (this.iPhone.isArtboardFor6(rect)) { return this.iPhone.scaleTo6p(rect) }
+    if (this.iPhone.isArtboardFor6p(rect)) { return this.iPhone.sizeFor6p }
     return 1
   }
 
