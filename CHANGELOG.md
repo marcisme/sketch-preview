@@ -1,3 +1,7 @@
+# v0.6.0
+
+* Update scaling calculations to handle scrollable content
+
 # v0.5.0
 
 * Reorganize project to use includes

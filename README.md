@@ -5,9 +5,6 @@ command (⌘P) that will export the currently selected Artboard at a configurabl
 preview size (⌘⌥P) and open the resulting image file in [Skala
 Preview](http://bjango.com/mac/skalapreview).
 
-If you prefer, you can name a slice `Preview`, and that slice will be used
-instead.
-
 # Installation
 
 [Download](https://github.com/marcisme/sketch-preview/archive/master.zip) the
@@ -37,6 +34,9 @@ modes available on the iPhones 6. The simulated modes are not currently
 accurate, and the final image will be 1 to 2 pixels off in the smaller
 dimension.
 
+As of `v0.6.0`, Artboards that are larger in one dimension should be scaled
+correctly, allowing preview of mockups of scrollable content.
+
 # Compatibility
 
 This plugin has been used successfully with the following versions of software.
@@ -45,18 +45,16 @@ you some idea of the latest versions that have worked for other people. Feel
 free to submit a [pull request](https://github.com/marcisme/sketch-preview/compare/)
 if you've used the plugin with a newer version of any of these applications.
 
-* Sketch 3.1.1 (8761)
+* Sketch 3.2 (9961)
 * Skala Preview 1.6.0
 * Skala View for Android 1.2.2
 
 # Troubleshooting
 
-*Sketch 2 is no longer supported*
-
-If you find any other issues, you can try to reproduce them with
-`PreviewTest.sketch`, found in the test directory of this repository. You can
-also edit the plugin file to set `DEBUG` to `true` and look at the output in
-`Console.app` to get a better idea of what is going on. Please open an
+If you find any issues, you can try to reproduce them with `PreviewTest.sketch`,
+found in the test directory of this repository. You can also edit the plugin
+file to set `DEBUG` to `true` and look at the output in `Console.app` to get a
+better idea of what is going on. Please open an
 [issue](https://github.com/marcisme/sketch-preview/issues/new) if there is still
 a problem.
 
