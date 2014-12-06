@@ -21,40 +21,53 @@
 
 function IPhoneCalculator() {
 
+  var Five    = [320, 568]
+  var Six     = [375, 667]
+  var SixPlus = [414, 736]
+
   this.sizeFor5 = 2
   this.sizeFor6 = 2
   this.sizeFor6p = 3
 
   this.isArtboardFor5 = function(rect) {
-    return isCompatibleRect(rect, [320, 568])
+    return isCompatibleRect(rect, Five)
   }
 
   this.isArtboardFor6 = function(rect) {
-    return isCompatibleRect(rect, [375, 667])
+    return isCompatibleRect(rect, Six)
   }
 
   this.isArtboardFor6p = function(rect) {
-    return isCompatibleRect(rect, [414, 736])
+    return isCompatibleRect(rect, SixPlus)
   }
 
   this.scaleTo6 = function(rect) {
-    return 1334 / largestDimension(rect)
+    return (Six[1] * this.sizeFor6) / largestDimension(rect, this)
   }
 
   this.scaleTo6p = function(rect) {
-    return 2208 / largestDimension(rect)
+    return (SixPlus[1] * this.sizeFor6p) / largestDimension(rect, this)
   }
 
-  function largestDimension(rect) {
-    return Math.max(rect.size.width, rect.size.height)
+  function largestDimension(rect, that) {
+    if (that.isArtboardFor5(rect)) { return Five[1] }
+    if (that.isArtboardFor6(rect)) { return Six[1] }
   }
 
-  function isCompatibleRect(rect, dimensions) {
+  function isCompatibleRect(rect, knownSize) {
     var size = rect.size
-    if (size.width == dimensions[0] && size.height == dimensions[1]) {
+    var knownWidth = knownSize[0]
+    var knownHeight = knownSize[1]
+    if (size.width == knownWidth && size.height >= knownHeight) {
       return true
     }
-    if (size.height == dimensions[0] && size.width == dimensions[1]) {
+    if (size.width >= knownWidth && size.height == knownHeight) {
+      return true
+    }
+    if (size.height == knownWidth && size.width >= knownHeight) {
+      return true
+    }
+    if (size.height >= knownWidth && size.width == knownHeight) {
       return true
     }
     return false

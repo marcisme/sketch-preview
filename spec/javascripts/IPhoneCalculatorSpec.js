@@ -28,105 +28,89 @@ describe("IPhoneCalculator", function() {
 
   describe("portrait", function() {
 
-      describe("artboard detection", function() {
+    itDetectsSupportedArtboardSizes([IPhone5Portrait, IPhone6Portrait, IPhone6pPortrait])
 
-        it("detects iPhone 5[s] artboards", function() {
-          expect(calculator.isArtboardFor5(delta(IPhone5Portrait, [-1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor5(delta(IPhone5Portrait, [0, -1]))).toBe(false)
-          expect(calculator.isArtboardFor5(IPhone5Portrait)).toBe(true)
-          expect(calculator.isArtboardFor5(delta(IPhone5Portrait, [1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor5(delta(IPhone5Portrait, [0, 1]))).toBe(false)
-        })
+    describe("iPhone 6 scaling", function() {
 
-        it("detects iPhone 6 artboards", function() {
-          expect(calculator.isArtboardFor6(delta(IPhone6Portrait, [-1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor6(delta(IPhone6Portrait, [0, -1]))).toBe(false)
-          expect(calculator.isArtboardFor6(IPhone6Portrait)).toBe(true)
-          expect(calculator.isArtboardFor6(delta(IPhone6Portrait, [1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor6(delta(IPhone6Portrait, [0, 1]))).toBe(false)
-        })
-
-        it("detects iPhone 6+ artboards", function() {
-          expect(calculator.isArtboardFor6p(delta(IPhone6pPortrait, [-1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor6p(delta(IPhone6pPortrait, [0, -1]))).toBe(false)
-          expect(calculator.isArtboardFor6p(IPhone6pPortrait)).toBe(true)
-          expect(calculator.isArtboardFor6p(delta(IPhone6pPortrait, [1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor6p(delta(IPhone6pPortrait, [0, 1]))).toBe(false)
-        })
-
+      it("scales from iPhone 5[s]", function() {
+        expect(calculator.scaleTo6(IPhone5Portrait)).toBeCloseTo(2.348)
       })
 
-      describe("iPhone 6 scaling", function() {
-
-        it("scales from iPhone 5[s]", function() {
-          expect(calculator.scaleTo6(IPhone5Portrait)).toBeCloseTo(2.348)
-        })
-
+      it("scales vertically scrollable content from iPhone 5[s]", function() {
+        expect(calculator.scaleTo6(delta(IPhone5Portrait, [0, 100]))).toBeCloseTo(2.348)
       })
 
-      describe("iPhone 6+ scaling", function() {
+    })
 
-        it("scales from iPhone 5[s]", function() {
-          expect(calculator.scaleTo6p(IPhone5Portrait)).toBeCloseTo(3.887)
-        })
+    describe("iPhone 6+ scaling", function() {
 
-        it("scales from iPhone 6", function() {
-          expect(calculator.scaleTo6p(IPhone6Portrait)).toBeCloseTo(3.310)
-        })
-
+      it("scales from iPhone 5[s]", function() {
+        expect(calculator.scaleTo6p(IPhone5Portrait)).toBeCloseTo(3.887)
       })
+
+      it("scales from iPhone 6", function() {
+        expect(calculator.scaleTo6p(IPhone6Portrait)).toBeCloseTo(3.310)
+      })
+
+      it("scales vertically scrollable content from iPhone 5[s]", function() {
+        expect(calculator.scaleTo6p(delta(IPhone5Portrait, [0, 100]))).toBeCloseTo(3.887)
+      })
+
+      it("scales vertically scrollable content from iPhone 6", function() {
+        expect(calculator.scaleTo6p(delta(IPhone6Portrait, [0, 100]))).toBeCloseTo(3.310)
+      })
+
+    })
 
   })
 
   describe("landscape", function() {
 
-      describe("artboard detection", function() {
+    itDetectsSupportedArtboardSizes([IPhone5Landscape, IPhone6Landscape, IPhone6pLandscape])
 
-        it("detects iPhone 5[s] artboards", function() {
-          expect(calculator.isArtboardFor5(delta(IPhone5Landscape, [-1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor5(delta(IPhone5Landscape, [0, -1]))).toBe(false)
-          expect(calculator.isArtboardFor5(IPhone5Landscape)).toBe(true)
-          expect(calculator.isArtboardFor5(delta(IPhone5Landscape, [1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor5(delta(IPhone5Landscape, [0, 1]))).toBe(false)
-        })
+    describe("iPhone 6 scaling", function() {
 
-        it("detects iPhone 6 artboards", function() {
-          expect(calculator.isArtboardFor6(delta(IPhone6Landscape, [-1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor6(delta(IPhone6Landscape, [0, -1]))).toBe(false)
-          expect(calculator.isArtboardFor6(IPhone6Landscape)).toBe(true)
-          expect(calculator.isArtboardFor6(delta(IPhone6Landscape, [1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor6(delta(IPhone6Landscape, [0, 1]))).toBe(false)
-        })
-
-        it("detects iPhone 6+ artboards", function() {
-          expect(calculator.isArtboardFor6p(delta(IPhone6pLandscape, [-1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor6p(delta(IPhone6pLandscape, [0, -1]))).toBe(false)
-          expect(calculator.isArtboardFor6p(IPhone6pLandscape)).toBe(true)
-          expect(calculator.isArtboardFor6p(delta(IPhone6pLandscape, [1, 0]))).toBe(false)
-          expect(calculator.isArtboardFor6p(delta(IPhone6pLandscape, [0, 1]))).toBe(false)
-        })
-
+      it("scales from iPhone 5[s]", function() {
+        expect(calculator.scaleTo6(IPhone5Landscape)).toBeCloseTo(2.348)
       })
 
-      describe("iPhone 6 scaling", function() {
-
-        it("scales from iPhone 5[s]", function() {
-          expect(calculator.scaleTo6(IPhone5Landscape)).toBeCloseTo(2.348)
-        })
-
+      it("scales vertically scrollable content from iPhone 5[s]", function() {
+        expect(calculator.scaleTo6(delta(IPhone5Landscape, [0, 100]))).toBeCloseTo(2.348)
       })
 
-      describe("iPhone 6+ scaling", function() {
-
-        it("scales from iPhone 5[s]", function() {
-          expect(calculator.scaleTo6p(IPhone5Landscape)).toBeCloseTo(3.887)
-        })
-
-        it("scales from iPhone 6", function() {
-          expect(calculator.scaleTo6p(IPhone6Landscape)).toBeCloseTo(3.310)
-        })
-
+      it("scales horizontally scrollable content from iPhone 5[s]", function() {
+        expect(calculator.scaleTo6(delta(IPhone5Landscape, [100, 0]))).toBeCloseTo(2.348)
       })
+
+    })
+
+    describe("iPhone 6+ scaling", function() {
+
+      it("scales from iPhone 5[s]", function() {
+        expect(calculator.scaleTo6p(IPhone5Landscape)).toBeCloseTo(3.887)
+      })
+
+      it("scales from iPhone 6", function() {
+        expect(calculator.scaleTo6p(IPhone6Landscape)).toBeCloseTo(3.310)
+      })
+
+      it("scales vertically scrollable content from iPhone 5[s]", function() {
+        expect(calculator.scaleTo6p(delta(IPhone5Landscape, [0, 100]))).toBeCloseTo(3.887)
+      })
+
+      it("scales vertically scrollable content from iPhone 6", function() {
+        expect(calculator.scaleTo6p(delta(IPhone6Landscape, [0, 100]))).toBeCloseTo(3.310)
+      })
+
+      it("scales horizontally scrollable content from iPhone 5[s]", function() {
+        expect(calculator.scaleTo6p(delta(IPhone5Landscape, [100, 0]))).toBeCloseTo(3.887)
+      })
+
+      it("scales horizontally scrollable content from iPhone 6", function() {
+        expect(calculator.scaleTo6p(delta(IPhone6Landscape, [100, 0]))).toBeCloseTo(3.310)
+      })
+
+    })
 
   })
 
@@ -138,6 +122,44 @@ describe("IPhoneCalculator", function() {
     var newWidth = originalRect.size.width + delta[0]
     var newHeight = originalRect.size.height + delta[1]
     return rect([newWidth, newHeight])
+  }
+
+  function itDetectsSupportedArtboardSizes(iPhoneRects) {
+
+    describe("artboard detection", function() {
+
+      it("detects iPhone 5[s] artboards", function() {
+        expect(calculator.isArtboardFor5(delta(iPhoneRects[0], [-1, 0]))).toBe(false)
+        expect(calculator.isArtboardFor5(delta(iPhoneRects[0], [0, -1]))).toBe(false)
+        expect(calculator.isArtboardFor5(delta(iPhoneRects[0], [-1, -1]))).toBe(false)
+        expect(calculator.isArtboardFor5(iPhoneRects[0])).toBe(true)
+        expect(calculator.isArtboardFor5(delta(iPhoneRects[0], [1, 0]))).toBe(true)
+        expect(calculator.isArtboardFor5(delta(iPhoneRects[0], [0, 1]))).toBe(true)
+        expect(calculator.isArtboardFor5(delta(iPhoneRects[0], [1, 1]))).toBe(false)
+      })
+
+      it("detects iPhone 6 artboards", function() {
+        expect(calculator.isArtboardFor6(delta(iPhoneRects[1], [-1, 0]))).toBe(false)
+        expect(calculator.isArtboardFor6(delta(iPhoneRects[1], [0, -1]))).toBe(false)
+        expect(calculator.isArtboardFor6(delta(iPhoneRects[1], [-1, -1]))).toBe(false)
+        expect(calculator.isArtboardFor6(iPhoneRects[1])).toBe(true)
+        expect(calculator.isArtboardFor6(delta(iPhoneRects[1], [1, 0]))).toBe(true)
+        expect(calculator.isArtboardFor6(delta(iPhoneRects[1], [0, 1]))).toBe(true)
+        expect(calculator.isArtboardFor6(delta(iPhoneRects[1], [1, 1]))).toBe(false)
+      })
+
+      it("detects iPhone 6+ artboards", function() {
+        expect(calculator.isArtboardFor6p(delta(iPhoneRects[2], [-1, 0]))).toBe(false)
+        expect(calculator.isArtboardFor6p(delta(iPhoneRects[2], [0, -1]))).toBe(false)
+        expect(calculator.isArtboardFor6p(delta(iPhoneRects[2], [-1, -1]))).toBe(false)
+        expect(calculator.isArtboardFor6p(iPhoneRects[2])).toBe(true)
+        expect(calculator.isArtboardFor6p(delta(iPhoneRects[2], [1, 0]))).toBe(true)
+        expect(calculator.isArtboardFor6p(delta(iPhoneRects[2], [0, 1]))).toBe(true)
+        expect(calculator.isArtboardFor6p(delta(iPhoneRects[2], [1, 1]))).toBe(false)
+      })
+
+    })
+
   }
 
 })
