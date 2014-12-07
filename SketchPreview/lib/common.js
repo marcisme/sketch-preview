@@ -52,7 +52,7 @@ function Config() {
   }
 
   this.getPreviewSizeLabelIndex = function() {
-    return configDictionary[PREVIEW_SIZE_INDEX_KEY] || 1
+    return boundedIndex(configDictionary[PREVIEW_SIZE_INDEX_KEY], PREVIEW_SIZES) || 1
   }
 
   this.setPreviewSizeLabelIndex = function(previewSizeLabelIndex) {
@@ -71,7 +71,7 @@ function Config() {
   }
 
   this.getScalingStrategyId = function() {
-    return configDictionary[SCALING_STRATEGY_ID_KEY] || 1
+    return boundedIndex(configDictionary[SCALING_STRATEGY_ID_KEY], this.SCALING_STRATEGIES) || 1
   }
 
   this.setScalingStrategyId = function(scalingStrategyId) {
@@ -80,6 +80,12 @@ function Config() {
 
   this.save = function() {
     [configDictionary writeToURL:getConfigFileURL() atomically:true]
+  }
+
+  function boundedIndex(index, array) {
+    if (index < 0) { return undefined }
+    if (index >= array.length) { return undefined }
+    return index
   }
 
   function loadConfigDictionary() {
