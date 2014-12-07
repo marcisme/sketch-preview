@@ -7,6 +7,9 @@ Preview](http://bjango.com/mac/skalapreview).
 
 # Installation
 
+*Note: The organization of the plugin files changed in `v0.5.0`. Remove any old
+files from the plugin directory if upgrading from an older version.*
+
 [Download](https://github.com/marcisme/sketch-preview/archive/master.zip) the
 latest version of this project, and copy the `SketchPreview` directory into the
 Sketch plugin directory. For Sketch 3, this should be:
