@@ -54,7 +54,7 @@ function Config() {
   ]
 
   var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview"
-  var CONFIG_FILE_NAME = "/config.plist"
+  var CONFIG_FILE_NAME = "config.plist"
   var configDictionary = loadConfigDictionary()
 
   var PREVIEW_SIZES = [0.5, 1.0, 1.5, 2.0, 3.0]
@@ -70,7 +70,9 @@ function Config() {
   }
 
   this.getPreviewSizeLabelIndex = function() {
-    return boundedIndex(configDictionary[PREVIEW_SIZE_INDEX_KEY], PREVIEW_SIZES) || 1
+    var index = configDictionary[PREVIEW_SIZE_INDEX_KEY]
+    if (index < 0 || index >= PREVIEW_SIZES.length) { return 1 }
+    return index
   }
 
   this.setPreviewSizeLabelIndex = function(previewSizeLabelIndex) {
@@ -80,8 +82,10 @@ function Config() {
   this.getScalingStrategy = function() {
     var scalingStrategyId = this.getScalingStrategyId()
     var scalingStrategy
+    debug("searching for scalingStrategyId: " + scalingStrategyId)
     this.SCALING_STRATEGIES.forEach(function(strategy) {
       if (scalingStrategyId == strategy.strategyId) {
+        debug("found strategy: " + strategy.label)
         scalingStrategy = strategy
       }
     })
@@ -89,7 +93,7 @@ function Config() {
   }
 
   this.getScalingStrategyId = function() {
-    return boundedIndex(configDictionary[SCALING_STRATEGY_ID_KEY], this.SCALING_STRATEGIES) || 1
+    return configDictionary[SCALING_STRATEGY_ID_KEY] || 1
   }
 
   this.setScalingStrategyId = function(scalingStrategyId) {
@@ -104,12 +108,6 @@ function Config() {
       debug("failed to write config to: " + url)
     }
     debug("config: " + configDictionary)
-  }
-
-  function boundedIndex(index, array) {
-    if (index < 0) { return undefined }
-    if (index >= array.length) { return undefined }
-    return index
   }
 
   function loadConfigDictionary() {
