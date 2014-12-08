@@ -47,7 +47,7 @@ if you've used the plugin with a newer version of any of these applications.
 
 * Sketch 3.1.1 (8761)
 * Skala Preview 1.6.0
-* Skala View for Andriod 1.2.2
+* Skala View for Android 1.2.2
 
 # Troubleshooting
 
