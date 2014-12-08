@@ -21,9 +21,27 @@
 
 #import 'lib/calculations.js'
 
+var DEBUG = false
+
+// logging functions
+
+function debug(message) {
+  if (DEBUG) {
+    log("DEBUG: " + message)
+  }
+}
+
+function error(message) {
+  log("ERROR: " + message)
+}
+
+// common functions
+
 function isSupportedVersion() {
   return [[doc currentPage] respondsToSelector:"exportableLayers"]
 }
+
+// configuration objects
 
 function Config() {
 
@@ -79,7 +97,13 @@ function Config() {
   }
 
   this.save = function() {
-    [configDictionary writeToURL:getConfigFileURL() atomically:true]
+    var url = getConfigFileURL()
+    if ([configDictionary writeToURL:url atomically:true]) {
+      debug("config written to: " + url)
+    } else {
+      debug("failed to write config to: " + url)
+    }
+    debug("config: " + configDictionary)
   }
 
   function boundedIndex(index, array) {
@@ -89,8 +113,17 @@ function Config() {
   }
 
   function loadConfigDictionary() {
-    return [NSMutableDictionary dictionaryWithContentsOfURL:getConfigFileURL()] ||
-      [NSMutableDictionary dictionary]
+    var url = getConfigFileURL()
+    var cd = [NSMutableDictionary dictionaryWithContentsOfURL:url]
+    if (cd) {
+      debug("config loaded from: " + url)
+      debug("config: " + cd)
+      return cd
+    } else {
+      debug("failed to load config from: " + url)
+      debug("config: " + cd)
+      return [NSMutableDictionary dictionary]
+    }
   }
 
   function getConfigFileURL() {

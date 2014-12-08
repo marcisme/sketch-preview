@@ -25,31 +25,12 @@
 
 // configuration
 
-var DEBUG = false
-
 var PREVIEW_APPLICATION = "Skala Preview"
 var PREVIEW_TARGET_NAME = "Preview"
 
 var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview"
-var LOG_PREFIX = "sketch-preview"
 var PREVIEW_FILE_NAME = "preview.png"
 var config = new Config()
-
-// logging functions
-
-function debug(message) {
-  if (DEBUG) {
-    logWithPrefix(message)
-  }
-}
-
-function error(message) {
-  logWithPrefix(message)
-}
-
-function logWithPrefix(message) {
-  log(LOG_PREFIX + ": " + message)
-}
 
 // preview functions
 
@@ -113,6 +94,7 @@ function isPreviewTarget(name) {
 
 function writeAndOpenPreviewFile(previewTarget) {
   var previewFilePath = getPreviewFilePath()
+  debug("writing preview image to: " + previewFilePath)
   [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
   openPreviewFile(previewFilePath)
 }
@@ -120,6 +102,7 @@ function writeAndOpenPreviewFile(previewTarget) {
 function resizedPreviewTarget(layer) {
   var rect = [[layer absoluteRect] rect]
   var size = config.getScalingStrategy().sizeForRect(rect)
+  debug("preview scale factor: " + size)
   return [MSExportRequest requestWithRect:rect scale:size]
 }
 
