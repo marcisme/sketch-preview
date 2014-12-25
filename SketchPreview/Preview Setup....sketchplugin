@@ -55,7 +55,7 @@ function requestPreviewSize(config) {
   [accessory addSubview:matrix]
 
   var segmentedControl = [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(20, 0, 250, 25)]
-  segmentedControl.segmentCount = config.PREVIEW_SIZE_LABELS.length
+  [segmentedControl setSegmentCount:config.PREVIEW_SIZE_LABELS.length]
   [segmentedControl setEnabled:false]
   config.PREVIEW_SIZE_LABELS.forEach(function(sizeLabel, i) {
     [segmentedControl setLabel:sizeLabel forSegment:i]
@@ -68,7 +68,7 @@ function requestPreviewSize(config) {
   [matrix setCOSJSTargetFunction:updateControls]
 
   [matrix selectCellWithTag:config.getScalingStrategyId()]
-  segmentedControl.selectedSegment = config.getPreviewSizeLabelIndex()
+  [segmentedControl setSelectedSegment:config.getPreviewSizeLabelIndex()]
   updateControls()
 
   // _setBorderColor(accessory, [NSColor redColor])
