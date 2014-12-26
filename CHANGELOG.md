@@ -1,3 +1,8 @@
+# v0.6.1
+
+* Keep Sketch in the foreground when previewing
+* Fix OSX 10.9 compatibility issue
+
 # v0.6.0
 
 * Update scaling calculations to handle scrollable content
