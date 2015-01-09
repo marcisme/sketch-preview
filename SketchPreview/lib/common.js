@@ -45,7 +45,6 @@ function isSupportedVersion() {
 
 function Config() {
 
-  this.PREVIEW_SIZE_LABELS = ["0.5x", "1x", "1.5x", "2x", "3x"]
   this.SCALING_STRATEGIES = [
     new IPhoneAutoStrategy(),
     new IPhone6Strategy(),
@@ -57,7 +56,8 @@ function Config() {
   var CONFIG_FILE_NAME = "config.plist"
   var configDictionary = loadConfigDictionary()
 
-  var PREVIEW_SIZES = [0.5, 1.0, 1.5, 2.0, 3.0]
+  var PREVIEW_SIZES = [0.5, 1.0, 1.5, 2.0, 3.0, 4.0]
+  this.PREVIEW_SIZE_LABELS = PREVIEW_SIZES.map(function(size) { return size + "x" })
   var PREVIEW_SIZE_INDEX_KEY = "previewSizeIndex"
 
   var SCALING_STRATEGY_ID_KEY = "scalingStrategyId"
