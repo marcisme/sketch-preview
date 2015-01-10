@@ -1,3 +1,7 @@
+# v0.7.0
+
+* Add 4x to explicit scale sizes
+
 # v0.6.1
 
 * Keep Sketch in the foreground when previewing
