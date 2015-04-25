@@ -117,7 +117,7 @@ function getPreviewDirectory() {
 }
 
 function openPreviewFile(previewFilePath) {
-  if(![[NSWorkspace sharedWorkspace] openFile:previewFilePath withApplication:PREVIEW_APPLICATION andDeactivate:false]]) {
+  if(![[NSWorkspace sharedWorkspace] openFile:previewFilePath withApplication:PREVIEW_APPLICATION options:NSWorkspaceLaunchAndHide andDeactivate:false]]) {
     [doc showMessage:"Failed to open preview file; Make sure '" + PREVIEW_APPLICATION + "' is installed."]
   }
 }
