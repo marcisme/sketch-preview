@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 
 
-#import 'lib/calculations.js'
+@import 'lib/calculations.js'
 
 var DEBUG = false
 
@@ -37,7 +37,7 @@ function error(message) {
 
 // common functions
 
-function isSupportedVersion() {
+var isSupportedVersion = function(doc) {
   return [[doc currentPage] respondsToSelector:"exportableLayers"]
 }
 

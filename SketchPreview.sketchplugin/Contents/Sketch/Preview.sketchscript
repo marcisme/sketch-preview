@@ -1,5 +1,3 @@
-// Preview file in Skala Preview (cmd p)
-
 // Copyright (c) 2013 Marc Schwieterman
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,7 +19,7 @@
 // THE SOFTWARE.
 
 
-#import 'lib/common.js'
+@import 'lib/common.js'
 
 // configuration
 
@@ -34,25 +32,25 @@ var config = new Config()
 
 // preview functions
 
-function preview() {
-  if (!isSupportedVersion()) {
+function preview(doc) {
+  if (!isSupportedVersion(doc)) {
     [doc showMessage:"Sketch 2 is no longer supported"]
     return
   }
-  var previewTarget = findPreviewTarget()
+  var previewTarget = findPreviewTarget(doc)
   if (previewTarget) {
-    writeAndOpenPreviewFile(previewTarget)
+    writeAndOpenPreviewFile(previewTarget, doc)
   }
   else {
     [doc showMessage:"The Preview plugin requires a selected Artboard or a slice named '" + PREVIEW_TARGET_NAME + "'"]
   }
 }
 
-function findPreviewTarget() {
-  return findNamedPreviewTarget() || findSelectedPreviewTarget()
+function findPreviewTarget(doc) {
+  return findNamedPreviewTarget(doc) || findSelectedPreviewTarget(doc)
 }
 
-function findSelectedPreviewTarget() {
+function findSelectedPreviewTarget(doc) {
   debug("Searching for selected Artboard")
   var currentArtboard = [[doc currentPage] currentArtboard]
   if (currentArtboard) {
@@ -64,9 +62,9 @@ function findSelectedPreviewTarget() {
   return currentArtboard
 }
 
-function findNamedPreviewTarget() {
+function findNamedPreviewTarget(doc) {
   debug("Searching for named preview slice: " + PREVIEW_TARGET_NAME)
-  var targets = allTargets()
+  var targets = allTargets(doc)
   for (var i = 0; i < [targets count]; i++) {
     var target = targets[i]
     if (isPreviewTarget([target name])) {
@@ -77,8 +75,8 @@ function findNamedPreviewTarget() {
   debug("No named preview slice found")
 }
 
-function allTargets() {
-  if (isSupportedVersion()) {
+function allTargets(doc) {
+  if (isSupportedVersion(doc)) {
     // Sketch 3
     return [[doc currentPage] exportableLayers]
   } else {
@@ -92,11 +90,11 @@ function isPreviewTarget(name) {
   return [name localizedCaseInsensitiveCompare:PREVIEW_TARGET_NAME] == NSOrderedSame
 }
 
-function writeAndOpenPreviewFile(previewTarget) {
+function writeAndOpenPreviewFile(previewTarget, doc) {
   var previewFilePath = getPreviewFilePath()
   debug("writing preview image to: " + previewFilePath)
   [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
-  openPreviewFile(previewFilePath)
+  openPreviewFile(previewFilePath, doc)
 }
 
 function resizedPreviewTarget(layer) {
@@ -116,11 +114,14 @@ function getPreviewDirectory() {
   return [[cachesURL URLByAppendingPathComponent:PREVIEW_DIRECTORY_NAME] path]
 }
 
-function openPreviewFile(previewFilePath) {
+function openPreviewFile(previewFilePath, doc) {
   if(![[NSWorkspace sharedWorkspace] openFile:previewFilePath withApplication:PREVIEW_APPLICATION andDeactivate:false]]) {
     [doc showMessage:"Failed to open preview file; Make sure '" + PREVIEW_APPLICATION + "' is installed."]
   }
 }
 
-preview()
+function onRun(context) {
+  var doc = context.document
+  preview(doc)
+}
 
