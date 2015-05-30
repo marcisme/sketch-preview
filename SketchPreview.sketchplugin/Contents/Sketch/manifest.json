@@ -1,0 +1,28 @@
+{
+  "name": "Sketch Preview",
+  "description": "Preview Artboards in Skala Preview",
+  "author": "Marc Schwieterman",
+  "homepage": "https://github.com/marcisme/sketch-preview",
+  "version": "0.8.0",
+  "identifier": "com.marcisme.sketch-preview",
+  "compatibleVersion": "3.3.2",
+  "bundleVersion": 1,
+  "commands": [{
+    "name": "Preview",
+    "identifier": "preview-command",
+    "shortcut": "cmd p",
+    "script": "Preview.sketchscript"
+  }, {
+    "name": "Preview Setup...",
+    "identifier": "preview-setup-command",
+    "shortcut": "cmd option p",
+    "script": "Preview Setup.sketchscript"
+  }],
+  "menu": {
+    "items": [
+      "preview-command",
+      "preview-setup-command"
+    ],
+    "isRoot": true
+  }
+}
