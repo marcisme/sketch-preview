@@ -21,18 +21,22 @@
 
 @import 'lib/calculations.js'
 
-var DEBUG = false
+// logger
 
-// logging functions
+function Logger(debugEnabled) {
 
-function debug(message) {
-  if (DEBUG) {
-    log("DEBUG: " + message)
+  this.debugEnabled = debugEnabled
+
+  this.debug = function(message) {
+    if (this.debugEnabled === 1) {
+      log("DEBUG: " + message)
+    }
   }
-}
 
-function error(message) {
-  log("ERROR: " + message)
+  this.error = function(message) {
+    log("ERROR: " + message)
+  }
+
 }
 
 // common functions
@@ -52,15 +56,19 @@ function Config() {
     new ExplicitSizeStrategy(this)
   ]
 
+  var logger = new Logger()
+
   var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview"
   var CONFIG_FILE_NAME = "config.plist"
-  var configDictionary = loadConfigDictionary()
+  var configDictionary
 
   var PREVIEW_SIZES = [0.5, 1.0, 1.5, 2.0, 3.0, 4.0]
   this.PREVIEW_SIZE_LABELS = PREVIEW_SIZES.map(function(size) { return size + "x" })
   var PREVIEW_SIZE_INDEX_KEY = "previewSizeIndex"
 
   var SCALING_STRATEGY_ID_KEY = "scalingStrategyId"
+
+  var DEBUG_KEY = "debug"
 
   this.getPreviewSize = function() {
     var previewSizeIndex = configDictionary[PREVIEW_SIZE_INDEX_KEY]
@@ -71,7 +79,7 @@ function Config() {
 
   this.getPreviewSizeLabelIndex = function() {
     var index = configDictionary[PREVIEW_SIZE_INDEX_KEY]
-    if (index < 0 || index >= PREVIEW_SIZES.length) { return 1 }
+    if (index == null || index < 0 || index >= PREVIEW_SIZES.length) { return 1 }
     return index
   }
 
@@ -82,10 +90,10 @@ function Config() {
   this.getScalingStrategy = function() {
     var scalingStrategyId = this.getScalingStrategyId()
     var scalingStrategy
-    debug("searching for scalingStrategyId: " + scalingStrategyId)
+    logger.debug("searching for scalingStrategyId: " + scalingStrategyId)
     this.SCALING_STRATEGIES.forEach(function(strategy) {
       if (scalingStrategyId == strategy.strategyId) {
-        debug("found strategy: " + strategy.label)
+        logger.debug("found strategy: " + strategy.label)
         scalingStrategy = strategy
       }
     })
@@ -100,26 +108,42 @@ function Config() {
     configDictionary[SCALING_STRATEGY_ID_KEY] = [NSNumber numberWithInteger:scalingStrategyId]
   }
 
+  function isDebug(cd) {
+    if (cd == null) { return 0 }
+    var debugEnabled = cd[DEBUG_KEY]
+    if (debugEnabled == null) { return 0 }
+    return [debugEnabled integerValue]
+  }
+
+  this.isDebug = function() {
+    return isDebug(configDictionary)
+  }
+
+  this.setDebug = function(enabled) {
+    configDictionary[DEBUG_KEY] = [NSNumber numberWithInteger:enabled]
+  }
+
   this.save = function() {
     var url = getConfigFileURL()
     if ([configDictionary writeToURL:url atomically:true]) {
-      debug("config written to: " + url)
+      logger.debug("config written to: " + url)
     } else {
-      debug("failed to write config to: " + url)
+      logger.debug("failed to write config to: " + url)
     }
-    debug("config: " + configDictionary)
+    logger.debug("config: " + configDictionary)
   }
 
   function loadConfigDictionary() {
     var url = getConfigFileURL()
     var cd = [NSMutableDictionary dictionaryWithContentsOfURL:url]
+    logger.debugEnabled = isDebug(cd)
     if (cd) {
-      debug("config loaded from: " + url)
-      debug("config: " + cd)
+      logger.debug("config loaded from: " + url)
+      logger.debug("config: " + cd)
       return cd
     } else {
-      debug("failed to load config from: " + url)
-      debug("config: " + cd)
+      logger.debug("failed to load config from: " + url)
+      logger.debug("config: " + cd)
       return [NSMutableDictionary dictionary]
     }
   }
@@ -129,6 +153,8 @@ function Config() {
     var applicationSupport = [[fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject]
     return [applicationSupport URLByAppendingPathComponent:PREVIEW_DIRECTORY_NAME + "/" + CONFIG_FILE_NAME]
   }
+
+  configDictionary = loadConfigDictionary()
 
 }
 
