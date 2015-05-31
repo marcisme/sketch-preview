@@ -29,6 +29,7 @@ var PREVIEW_TARGET_NAME = "Preview"
 var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview"
 var PREVIEW_FILE_NAME = "preview.png"
 var config = new Config()
+var logger = new Logger(config.isDebug())
 
 // preview functions
 
@@ -51,28 +52,28 @@ function findPreviewTarget(doc) {
 }
 
 function findSelectedPreviewTarget(doc) {
-  debug("Searching for selected Artboard")
+  logger.debug("Searching for selected Artboard")
   var currentArtboard = [[doc currentPage] currentArtboard]
   if (currentArtboard) {
-    debug("Found selected Artboard: " + [currentArtboard name])
+    logger.debug("Found selected Artboard: " + [currentArtboard name])
   }
   else {
-    debug("No Artboard selected")
+    logger.debug("No Artboard selected")
   }
   return currentArtboard
 }
 
 function findNamedPreviewTarget(doc) {
-  debug("Searching for named preview slice: " + PREVIEW_TARGET_NAME)
+  logger.debug("Searching for named preview slice: " + PREVIEW_TARGET_NAME)
   var targets = allTargets(doc)
   for (var i = 0; i < [targets count]; i++) {
     var target = targets[i]
     if (isPreviewTarget([target name])) {
-      debug("Found named preview slice")
+      logger.debug("Found named preview slice")
       return target
     }
   }
-  debug("No named preview slice found")
+  logger.debug("No named preview slice found")
 }
 
 function allTargets(doc) {
@@ -80,7 +81,7 @@ function allTargets(doc) {
     // Sketch 3
     return [[doc currentPage] exportableLayers]
   } else {
-    error("Unable to search for target slice; Sketch implementation may have changed")
+    logger.error("Unable to search for target slice; Sketch implementation may have changed")
     // Return empty array, so we move on to the next strategy
     return [NSArray new]
   }
@@ -92,7 +93,7 @@ function isPreviewTarget(name) {
 
 function writeAndOpenPreviewFile(previewTarget, doc) {
   var previewFilePath = getPreviewFilePath()
-  debug("writing preview image to: " + previewFilePath)
+  logger.debug("writing preview image to: " + previewFilePath)
   [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
   openPreviewFile(previewFilePath, doc)
 }
@@ -100,7 +101,7 @@ function writeAndOpenPreviewFile(previewTarget, doc) {
 function resizedPreviewTarget(layer) {
   var rect = [[layer absoluteRect] rect]
   var size = config.getScalingStrategy().sizeForRect(rect)
-  debug("preview scale factor: " + size)
+  logger.debug("preview scale factor: " + size)
   return [MSExportRequest requestWithRect:rect scale:size]
 }
 

@@ -35,9 +35,9 @@ function requestPreviewSize(config, doc) {
 
   var cellWidth = 460
 
-  var accessory = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, cellWidth, 130)]
+  var accessory = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, cellWidth, 160)]
 
-  var matrix = [[NSMatrix alloc] initWithFrame:NSMakeRect(0, 30, cellWidth, 100)
+  var matrix = [[NSMatrix alloc] initWithFrame:NSMakeRect(0, 60, cellWidth, 100)
     mode:NSRadioModeMatrix
     cellClass:[NSButtonCell class]
     numberOfRows:config.SCALING_STRATEGIES.length
@@ -52,7 +52,7 @@ function requestPreviewSize(config, doc) {
   })
   [accessory addSubview:matrix]
 
-  var segmentedControl = [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(20, 0, 250, 25)]
+  var segmentedControl = [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(20, 30, 250, 25)]
   [segmentedControl setSegmentCount:config.PREVIEW_SIZE_LABELS.length]
   [segmentedControl setEnabled:false]
   config.PREVIEW_SIZE_LABELS.forEach(function(sizeLabel, i) {
@@ -69,6 +69,12 @@ function requestPreviewSize(config, doc) {
   [segmentedControl setSelectedSegment:config.getPreviewSizeLabelIndex()]
   updateControls()
 
+  var debugSwitch = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 250, 25)]
+  [debugSwitch setButtonType:NSSwitchButton]
+  [debugSwitch setTitle:"Enable debug logging"]
+  [debugSwitch setState:config.isDebug()]
+  [accessory addSubview:debugSwitch]
+
   // _setBorderColor(accessory, [NSColor redColor])
   // _setBorderColor(matrix, [NSColor blueColor])
   // _setBorderColor(segmentedControl, [NSColor orangeColor])
@@ -83,10 +89,12 @@ function requestPreviewSize(config, doc) {
   var buttonReturnValue = [alert runModal]
   var previewSizeLabelIndex = [segmentedControl selectedSegment]
   var scalingStrategyId = [[matrix selectedCell] tag]
+  var debugEnabled = [debugSwitch state]
 
   if (buttonReturnValue === NSAlertFirstButtonReturn) {
     config.setPreviewSizeLabelIndex(previewSizeLabelIndex)
     config.setScalingStrategyId(scalingStrategyId)
+    config.setDebug(debugEnabled)
     config.save()
   }
 }
