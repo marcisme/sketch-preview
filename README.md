@@ -7,19 +7,14 @@ Preview](http://bjango.com/mac/skalapreview).
 
 # Installation
 
-*Note: The organization of the plugin files changed in `v0.5.0`. Remove any old
-files from the plugin directory if upgrading from an older version.*
+*Note: The plugin is using the new bundle format as of `v0.8.0`. Remove any old
+files from the plugin directory if upgrading from a previous version. You can
+open the plugin directory in the Finder with the `Plugins -> Reveal Plugins
+Folder...` menu item.*
 
-[Download](https://github.com/marcisme/sketch-preview/archive/master.zip) the
-latest version of this project, and copy the `SketchPreview` directory into the
-Sketch plugin directory. For Sketch 3, this should be:
-
-```
-~/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins
-```
-
-You can open this directory in the Finder with the `Plugins -> Reveal Plugins
-Folder...` menu item.
+[Download](https://github.com/marcisme/sketch-preview/archive/master.zip) or
+clone the latest version of this project, and open the
+`SketchPreview.sketchplugin` file.
 
 # Usage
 
@@ -55,9 +50,9 @@ if you've used the plugin with a newer version of any of these applications.
 # Troubleshooting
 
 If you find any issues, you can try to reproduce them with `PreviewTest.sketch`,
-found in the test directory of this repository. You can also edit the plugin
-file to set `DEBUG` to `true` and look at the output in `Console.app` to get a
-better idea of what is going on. Please open an
+found in the test directory of this repository. You can also check the `Enable
+debug logging` option in the `Preview Setup` and look at the output in
+`Console.app` to get a better idea of what is going on. Please open an
 [issue](https://github.com/marcisme/sketch-preview/issues/new) if there is still
 a problem.
 
