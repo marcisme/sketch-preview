@@ -1,3 +1,8 @@
+# v0.8.0
+
+* Migrate to new plugin bundle format
+* Move debug logging toggle to setup command
+
 # v0.7.0
 
 * Add 4x to explicit scale sizes
