@@ -43,7 +43,7 @@ you some idea of the latest versions that have worked for other people. Feel
 free to submit a [pull request](https://github.com/marcisme/sketch-preview/compare/)
 if you've used the plugin with a newer version of any of these applications.
 
-* Sketch 3.2 (9961)
+* Sketch 3.3.2 (12043)
 * Skala Preview 2.0 (205)
 * Skala View for iOS 2.0
 * Skala View for Android 1.2.2
