@@ -44,7 +44,8 @@ free to submit a [pull request](https://github.com/marcisme/sketch-preview/compa
 if you've used the plugin with a newer version of any of these applications.
 
 * Sketch 3.2 (9961)
-* Skala Preview 1.6.0
+* Skala Preview 2.0 (205)
+* Skala View for iOS 2.0
 * Skala View for Android 1.2.2
 
 # Troubleshooting
