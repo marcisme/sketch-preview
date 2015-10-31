@@ -7,14 +7,8 @@ Preview](http://bjango.com/mac/skalapreview).
 
 # Installation
 
-*Note: The plugin is using the new bundle format as of `v0.8.0`. Remove any old
-files from the plugin directory if upgrading from a previous version. You can
-open the plugin directory in the Finder with the `Plugins -> Reveal Plugins
-Folder...` menu item.*
-
 [Download](https://github.com/marcisme/sketch-preview/archive/master.zip) or
-clone the latest version of this project, and open the
-`SketchPreview.sketchplugin` file.
+clone the latest version of this project, and open `SketchPreview.sketchplugin`.
 
 # Usage
 
@@ -43,23 +37,23 @@ you some idea of the latest versions that have worked for other people. Feel
 free to submit a [pull request](https://github.com/marcisme/sketch-preview/compare/)
 if you've used the plugin with a newer version of any of these applications.
 
-* Sketch 3.4 (15575)
+* Sketch Beta 3.4.1 (15680) *The release version of 3.4 seems to have a bug that affects plugins.*
 * Skala Preview 2.0 (207)
 * Skala View for iOS 2.0
 * Skala View for Android 2.0
 
 # Troubleshooting
 
-If you find any issues, you can try to reproduce them with `PreviewTest.sketch`,
-found in the test directory of this repository. You can also check the `Enable
-debug logging` option in the `Preview Setup` and look at the output in
-`Console.app` to get a better idea of what is going on. Please open an
+If you find any issues, you can try to reproduce them with the files in the test
+directory of this repository. You can also check the `Enable debug logging`
+option in the `Preview Setup` and look at the output in `Console.app` to get a
+better idea of what is going on. Please open an
 [issue](https://github.com/marcisme/sketch-preview/issues/new) if there is still
 a problem.
 
 # Author
 
-[Marc Schwieterman](https://github.com/marcisme) ([@mschwieterman](https://twitter.com/mschwieterman) / [@mbs](https://app.net/mbs))
+[Marc Schwieterman](https://github.com/marcisme) ([@mschwieterman](https://twitter.com/mschwieterman)
 
 # Contributors
 
