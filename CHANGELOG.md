@@ -1,3 +1,7 @@
+# v0.9.0
+
+* Add 3.5x to explicit scale sizes
+
 # v0.8.0
 
 * Migrate to new plugin bundle format
