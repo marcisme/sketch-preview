@@ -62,7 +62,7 @@ function Config() {
   var CONFIG_FILE_NAME = "config.plist"
   var configDictionary
 
-  var PREVIEW_SIZES = [0.5, 1.0, 1.5, 2.0, 3.0, 4.0]
+  var PREVIEW_SIZES = [0.5, 1.0, 1.5, 2.0, 3.0, 3.5, 4.0]
   this.PREVIEW_SIZE_LABELS = PREVIEW_SIZES.map(function(size) { return size + "x" })
   var PREVIEW_SIZE_INDEX_KEY = "previewSizeIndex"
 

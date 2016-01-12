@@ -52,7 +52,7 @@ function requestPreviewSize(config, doc) {
   })
   [accessory addSubview:matrix]
 
-  var segmentedControl = [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(20, 30, 250, 25)]
+  var segmentedControl = [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(20, 30, 512, 25)]
   [segmentedControl setSegmentCount:config.PREVIEW_SIZE_LABELS.length]
   [segmentedControl setEnabled:false]
   config.PREVIEW_SIZE_LABELS.forEach(function(sizeLabel, i) {
