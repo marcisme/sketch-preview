@@ -37,12 +37,7 @@ you some idea of the latest versions that have worked for other people. Feel
 free to submit a [pull request](https://github.com/marcisme/sketch-preview/compare/)
 if you've used the plugin with a newer version of any of these applications.
 
-*Note: Version 3.4.2 has a known bug with document selection. If this issues is
-affecting you, you may want to try this
-[workaround](https://github.com/marcisme/sketch-preview/tree/fix-wrong-document-on-context)
-branch or the latest Sketch [beta](http://sketchapp.com/beta/)*
-
-* Sketch Beta 3.4.2 (15855)
+* Sketch 3.4.4 (17249)
 * Skala Preview 2.0 (207)
 * Skala View for iOS 2.0
 * Skala View for Android 2.0
