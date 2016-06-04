@@ -43,7 +43,8 @@ function preview(doc) {
     writeAndOpenPreviewFile(previewTarget, doc)
   }
   else {
-    [doc showMessage:"The Preview plugin requires a selected Artboard or a slice named '" + PREVIEW_TARGET_NAME + "'"]
+    if (config.isAutoPreview()) { return }
+    [doc showMessage:"The Preview plugin requires a selected Artboard"]
   }
 }
 
@@ -127,7 +128,7 @@ function onRun(context) {
 }
 
 function onSelectionChanged(context) {
-  if ( !config.isAutoPreview() ) { return }
+  if (!config.isAutoPreview()) { return }
   var doc = context.actionContext.document
   preview(doc)
 }
