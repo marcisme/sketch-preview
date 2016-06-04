@@ -1,3 +1,7 @@
+# v0.10.0
+
+* Create Auto Preview mode
+
 # v0.9.0
 
 * Add 3.5x to explicit scale sizes
