@@ -69,6 +69,7 @@ function Config() {
   var SCALING_STRATEGY_ID_KEY = "scalingStrategyId"
 
   var DEBUG_KEY = "debug"
+  var AUTO_PREVIEW_KEY = "autoPreview"
 
   this.getPreviewSize = function() {
     var previewSizeIndex = configDictionary[PREVIEW_SIZE_INDEX_KEY]
@@ -108,19 +109,28 @@ function Config() {
     configDictionary[SCALING_STRATEGY_ID_KEY] = [NSNumber numberWithInteger:scalingStrategyId]
   }
 
-  function isDebug(cd) {
+  function booleanConfigValue(cd, key) {
     if (cd == null) { return 0 }
-    var debugEnabled = cd[DEBUG_KEY]
+    var debugEnabled = cd[key]
     if (debugEnabled == null) { return 0 }
     return [debugEnabled integerValue]
   }
 
   this.isDebug = function() {
-    return isDebug(configDictionary)
+    return booleanConfigValue(configDictionary, DEBUG_KEY)
+  }
+
+  this.isAutoPreview = function() {
+    return booleanConfigValue(configDictionary, AUTO_PREVIEW_KEY)
   }
 
   this.setDebug = function(enabled) {
     configDictionary[DEBUG_KEY] = [NSNumber numberWithInteger:enabled]
+  }
+
+  this.toggleAutoPreview = function() {
+    var newAutoPreviewValue = !this.isAutoPreview()
+    configDictionary[AUTO_PREVIEW_KEY] = [NSNumber numberWithInteger:newAutoPreviewValue]
   }
 
   this.save = function() {
@@ -136,7 +146,7 @@ function Config() {
   function loadConfigDictionary() {
     var url = getConfigFileURL()
     var cd = [NSMutableDictionary dictionaryWithContentsOfURL:url]
-    logger.debugEnabled = isDebug(cd)
+    logger.debugEnabled = booleanConfigValue(cd, DEBUG_KEY)
     if (cd) {
       logger.debug("config loaded from: " + url)
       logger.debug("config: " + cd)

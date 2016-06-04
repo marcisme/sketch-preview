@@ -126,3 +126,9 @@ function onRun(context) {
   preview(doc)
 }
 
+function onSelectionChanged(context) {
+  if ( !config.isAutoPreview() ) { return }
+  var doc = context.actionContext.document
+  preview(doc)
+}
+
