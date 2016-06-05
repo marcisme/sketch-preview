@@ -8,7 +8,12 @@ Preview](http://bjango.com/mac/skalapreview).
 ## *NEW* Auto Preview
 
 You can now toggle Auto Preview mode (⌘\^P) to automatically preview the current
-Artboard whenever the selection changes. *This feature is still experimental.*
+Artboard whenever certain changes are made.
+
+*This feature is still experimental.*
+
+You can always initiate a preview by changing the current selection or
+initiating a preview directly via the `Plugin` menu or ⌘P.
 
 # Installation
 
