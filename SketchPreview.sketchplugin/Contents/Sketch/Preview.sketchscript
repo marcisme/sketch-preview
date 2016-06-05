@@ -127,9 +127,11 @@ function onRun(context) {
   preview(doc)
 }
 
-function onSelectionChanged(context) {
+function autoPreview(context) {
   if (!config.isAutoPreview()) { return }
-  var doc = context.actionContext.document
+  // TODO: document is sometimes null
+  // var doc = context.actionContext.document
+  var doc = [MSDocument currentDocument]
   preview(doc)
 }
 
