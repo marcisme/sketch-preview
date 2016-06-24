@@ -7,13 +7,16 @@ Preview](http://bjango.com/mac/skalapreview).
 
 ## *NEW* Auto Preview
 
-You can now toggle Auto Preview mode (⌘\^P) to automatically preview the current
-Artboard whenever certain changes are made.
+You can now toggle Auto Preview mode on and off with ⌘\^P to automatically
+preview the current Artboard whenever certain changes are made.
 
-*This feature is still experimental.*
+You can always initiate a preview by changing the current selection or directly
+via the `Plugin` menu or ⌘P.
 
-You can always initiate a preview by changing the current selection or
-initiating a preview directly via the `Plugin` menu or ⌘P.
+*This feature is still experimental. If you experience any crashes, any detail
+you can add to this
+[issue](https://github.com/marcisme/sketch-preview/issues/37) would be greatly
+appreciated.*
 
 # Installation
 
