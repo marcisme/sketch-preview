@@ -28,7 +28,6 @@
         "ConvertToOutlines.finish": "autoPreview",
         "DistributeHorizontally.finish": "autoPreview",
         "DistributeVertically.finish": "autoPreview",
-        "DocumentSaved.finish": "autoPreview",
         "FlipHorizontal.finish": "autoPreview",
         "FlipVertical.finish": "autoPreview",
         "HideLayer.finish": "autoPreview",
