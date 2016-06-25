@@ -1,3 +1,7 @@
+# v0.10.1
+
+* Remove DocumentSaved from preview actions
+
 # v0.10.0
 
 * Create Auto Preview mode
