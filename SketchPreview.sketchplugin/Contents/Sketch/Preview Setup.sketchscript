@@ -21,6 +21,8 @@
 
 @import 'lib/common.js'
 
+coscript.shouldKeepAround = true
+
 function requestPreviewSize(config, doc) {
   if (!isSupportedVersion(doc)) {
     [doc showMessage:"Sketch 2 is not supported"]

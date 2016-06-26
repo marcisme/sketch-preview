@@ -21,6 +21,8 @@
 
 @import 'lib/common.js'
 
+coscript.shouldKeepAround = true
+
 // configuration
 
 var PREVIEW_APPLICATION = "Skala Preview"
@@ -123,11 +125,13 @@ function openPreviewFile(previewFilePath, doc) {
 }
 
 function onRun(context) {
+  config.reload()
   var doc = context.document
   preview(doc)
 }
 
 function autoPreview(context) {
+  config.reload()
   if (!config.isAutoPreview()) { return }
   // TODO: document is sometimes null
   // var doc = context.actionContext.document

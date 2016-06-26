@@ -133,6 +133,10 @@ function Config() {
     configDictionary[AUTO_PREVIEW_KEY] = [NSNumber numberWithInteger:newAutoPreviewValue]
   }
 
+  this.reload = function() {
+    configDictionary = loadConfigDictionary()
+  }
+
   this.save = function() {
     var url = getConfigFileURL()
     if ([configDictionary writeToURL:url atomically:true]) {
@@ -164,7 +168,7 @@ function Config() {
     return [applicationSupport URLByAppendingPathComponent:PREVIEW_DIRECTORY_NAME + "/" + CONFIG_FILE_NAME]
   }
 
-  configDictionary = loadConfigDictionary()
+  this.reload()
 
 }
 
