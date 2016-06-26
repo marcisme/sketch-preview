@@ -1,3 +1,7 @@
+# v0.10.2
+
+* Fix memory/thread leaks
+
 # v0.10.1
 
 * Remove DocumentSaved from preview actions
