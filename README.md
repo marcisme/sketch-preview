@@ -13,10 +13,9 @@ preview the current Artboard whenever certain changes are made.
 You can always initiate a preview by changing the current selection or directly
 via the `Plugin` menu or ⌘P.
 
-*This feature is still experimental. If you experience any crashes, any detail
-you can add to this
-[issue](https://github.com/marcisme/sketch-preview/issues/37) would be greatly
-appreciated.*
+*This feature is still experimental. Please file an
+[issue](https://github.com/marcisme/sketch-preview/issues/new) if you experience
+any problems.*
 
 # Installation
 
