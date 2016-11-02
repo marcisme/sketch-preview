@@ -105,7 +105,10 @@ function resizedPreviewTarget(layer) {
   var rect = [[layer absoluteRect] rect]
   var size = config.getScalingStrategy().sizeForRect(rect)
   logger.debug("preview scale factor: " + size)
-  return [MSExportRequest requestWithRect:rect scale:size]
+  var request = [MSExportRequest new]
+  request.rect = rect
+  request.scale = size
+  return request
 }
 
 function getPreviewFilePath() {
