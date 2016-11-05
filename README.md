@@ -13,10 +13,6 @@ preview the current Artboard whenever certain changes are made.
 You can always initiate a preview by changing the current selection or directly
 via the `Plugin` menu or ⌘P.
 
-*This feature is still experimental. Please file an
-[issue](https://github.com/marcisme/sketch-preview/issues/new) if you experience
-any problems.*
-
 # Installation
 
 [Download](https://github.com/marcisme/sketch-preview/archive/master.zip) or
@@ -49,7 +45,8 @@ you some idea of the latest versions that have worked for other people. Feel
 free to submit a [pull request](https://github.com/marcisme/sketch-preview/compare/)
 if you've used the plugin with a newer version of any of these applications.
 
-* Sketch 3.8.3 (29802)
+* Sketch Version 40.3 (33839)
+* Sketch Beta Version 41 (35299)
 * Skala Preview 2.0 (207)
 * Skala View for iOS 2.0
 * Skala View for Android 2.0

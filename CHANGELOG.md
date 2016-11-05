@@ -1,3 +1,7 @@
+# v0.10.3
+
+* Update for MSExportRequest changes in beta41
+
 # v0.10.2
 
 * Fix memory/thread leaks
