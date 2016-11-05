@@ -34,9 +34,6 @@ modes available on the iPhones 6. The simulated modes are not currently
 accurate, and the final image will be 1 to 2 pixels off in the smaller
 dimension.
 
-As of `v0.6.0`, Artboards that are larger in one dimension should be scaled
-correctly, allowing preview of mockups of scrollable content.
-
 # Compatibility
 
 This plugin has been used successfully with the following versions of software.
