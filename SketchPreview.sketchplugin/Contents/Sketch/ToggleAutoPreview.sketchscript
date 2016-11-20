@@ -21,7 +21,7 @@
 
 @import 'lib/common.js'
 
-coscript.shouldKeepAround = true
+// coscript.shouldKeepAround = true
 
 function onRun(context) {
   var config = new Config()

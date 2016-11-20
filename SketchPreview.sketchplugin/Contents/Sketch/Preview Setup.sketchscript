@@ -21,7 +21,7 @@
 
 @import 'lib/common.js'
 
-coscript.shouldKeepAround = true
+// coscript.shouldKeepAround = true
 
 function requestPreviewSize(config, doc) {
   if (!isSupportedVersion(doc)) {
@@ -35,26 +35,24 @@ function requestPreviewSize(config, doc) {
     [[view layer] setBorderWidth:1]
   }
 
+  var numRadioButtons = config.SCALING_STRATEGIES.length
   var cellWidth = 480
+  var cellHeight = 25
+  var debugHeight = cellHeight
+  var segmentedControlHeight = cellHeight// + 5
+  var segmentedControlY = cellHeight
+  var accessoryHeight = debugHeight + segmentedControlHeight + (cellHeight * numRadioButtons)
+  var firstRadioButtonY = debugHeight + segmentedControlHeight
 
-  var accessory = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, cellWidth, 160)]
+  var accessory = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, cellWidth, accessoryHeight)]
 
-  var matrix = [[NSMatrix alloc] initWithFrame:NSMakeRect(0, 60, cellWidth, 100)
-    mode:NSRadioModeMatrix
-    cellClass:[NSButtonCell class]
-    numberOfRows:config.SCALING_STRATEGIES.length
-    numberOfColumns:1
-  ]
-  [matrix setCellSize:NSMakeSize(cellWidth, 25)]
-  config.SCALING_STRATEGIES.forEach(function(strategy, i) {
-    var cell = [matrix cells][i]
-    [cell setButtonType:NSRadioButton]
-    [cell setTitle:strategy.label]
-    [cell setTag:strategy.strategyId]
-  })
-  [accessory addSubview:matrix]
+  var debugSwitch = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 250, debugHeight)]
+  [debugSwitch setButtonType:NSSwitchButton]
+  [debugSwitch setTitle:"Enable debug logging"]
+  [debugSwitch setState:config.isDebug()]
+  [accessory addSubview:debugSwitch]
 
-  var segmentedControl = [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(20, 30, 512, 25)]
+  var segmentedControl = [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(20, segmentedControlY, 512, cellHeight)]
   [segmentedControl setSegmentCount:config.PREVIEW_SIZE_LABELS.length]
   [segmentedControl setEnabled:false]
   config.PREVIEW_SIZE_LABELS.forEach(function(sizeLabel, i) {
@@ -62,23 +60,31 @@ function requestPreviewSize(config, doc) {
   })
   [accessory addSubview:segmentedControl]
 
+  var radioButtons = []
   function updateControls(sender) {
-    [segmentedControl setEnabled:[matrix selectedCell] == [matrix cellAtRow:3 column:0]]
+    [segmentedControl setEnabled:radioButtons[3].state() == 1]
   }
-  [matrix setCOSJSTargetFunction:updateControls]
 
-  [matrix selectCellWithTag:config.getScalingStrategyId()]
+  config.SCALING_STRATEGIES.forEach(function(strategy, i) {
+    var buttonY = ((numRadioButtons - i - 1) * cellHeight) + firstRadioButtonY
+    var button = [[NSButton alloc] initWithFrame:NSMakeRect(0, buttonY, cellWidth, cellHeight)]
+    [button setButtonType:NSRadioButton]
+    [button setTitle:strategy.label]
+    [button setTag:strategy.strategyId]
+    [button setCOSJSTargetFunction:updateControls]
+    radioButtons.push(button)
+    [accessory addSubview:button]
+  })
+
+  var selectedButton = radioButtons.find(function(button) {
+    return button.tag() == config.getScalingStrategyId()
+  })
+  [selectedButton setState:1]
+  selectedButton.highlight(true)
   [segmentedControl setSelectedSegment:config.getPreviewSizeLabelIndex()]
   updateControls()
 
-  var debugSwitch = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 250, 25)]
-  [debugSwitch setButtonType:NSSwitchButton]
-  [debugSwitch setTitle:"Enable debug logging"]
-  [debugSwitch setState:config.isDebug()]
-  [accessory addSubview:debugSwitch]
-
   // _setBorderColor(accessory, [NSColor redColor])
-  // _setBorderColor(matrix, [NSColor blueColor])
   // _setBorderColor(segmentedControl, [NSColor orangeColor])
 
   var alert = [[NSAlert alloc] init]
@@ -90,7 +96,9 @@ function requestPreviewSize(config, doc) {
 
   var buttonReturnValue = [alert runModal]
   var previewSizeLabelIndex = [segmentedControl selectedSegment]
-  var scalingStrategyId = [[matrix selectedCell] tag]
+  var scalingStrategyId = radioButtons.find(function(button) {
+    return button.state() == 1
+  }).tag()
   var debugEnabled = [debugSwitch state]
 
   if (buttonReturnValue === NSAlertFirstButtonReturn) {
