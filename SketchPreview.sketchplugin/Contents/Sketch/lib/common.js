@@ -53,6 +53,8 @@ function Config() {
     new IPhoneAutoStrategy(),
     new IPhone6Strategy(),
     new IPhone6pStrategy(),
+    new ExplicitWidthStrategy(this),
+    new ExplicitHeightStrategy(this),
     new ExplicitSizeStrategy(this)
   ]
 

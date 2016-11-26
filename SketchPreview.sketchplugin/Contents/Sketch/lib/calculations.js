@@ -135,3 +135,27 @@ function IPhone6pStrategy() {
 
 }
 
+function ExplicitWidthStrategy(config) {
+
+  this.strategyId = 5
+  this.label = "Scale to explicit width"
+  this.config = config
+
+  this.sizeForRect = function(rect) {
+    return 1//this.config.getPreviewWidth()
+  }
+
+}
+
+function ExplicitHeightStrategy(config) {
+
+  this.strategyId = 6
+  this.label = "Scale to explicit height"
+  this.config = config
+
+  this.sizeForRect = function(rect) {
+    return 1//this.config.getPreviewHeight()
+  }
+
+}
+
