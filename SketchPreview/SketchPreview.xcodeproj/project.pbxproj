@@ -17,7 +17,7 @@
 		49B781E91DEA26C300A0875F /* SetupAccessoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B781E81DEA26C300A0875F /* SetupAccessoryViewController.xib */; };
 		49B781EB1DEA2D8500A0875F /* SetupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B781EA1DEA2D8500A0875F /* SetupManager.swift */; };
 		49B781EE1DEA309800A0875F /* SetupAccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B781EC1DEA309800A0875F /* SetupAccessoryViewController.swift */; };
-		49E422CB1E0ECC890069D009 /* SketchPreviewKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49B781D91DEA00ED00A0875F /* SketchPreviewKit.framework */; };
+		49E422CB1E0ECC890069D009 /* SketchPreviewKit.framework in Copy SketchPreviewKit to Plugin Frameworks Directory */ = {isa = PBXBuildFile; fileRef = 49B781D91DEA00ED00A0875F /* SketchPreviewKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,14 +42,15 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49E422CA1E0ECC460069D009 /* CopyFiles */ = {
+		49E422CA1E0ECC460069D009 /* Copy SketchPreviewKit to Plugin Frameworks Directory */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
+			dstPath = $SRCROOT/../SketchPreview.sketchplugin/Contents/Frameworks;
 			dstSubfolderSpec = 0;
 			files = (
-				49E422CB1E0ECC890069D009 /* SketchPreviewKit.framework in CopyFiles */,
+				49E422CB1E0ECC890069D009 /* SketchPreviewKit.framework in Copy SketchPreviewKit to Plugin Frameworks Directory */,
 			);
+			name = "Copy SketchPreviewKit to Plugin Frameworks Directory";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -171,7 +172,7 @@
 				49B781D51DEA00ED00A0875F /* Frameworks */,
 				49B781D61DEA00ED00A0875F /* Headers */,
 				49B781D71DEA00ED00A0875F /* Resources */,
-				49E422CA1E0ECC460069D009 /* CopyFiles */,
+				49E422CA1E0ECC460069D009 /* Copy SketchPreviewKit to Plugin Frameworks Directory */,
 			);
 			buildRules = (
 			);

@@ -1,0 +1,10 @@
+framework module SketchPreviewKit {
+  umbrella header "SketchPreviewKit.h"
+
+  export *
+  module * { export * }
+}
+
+module SketchPreviewKit.Swift {
+    header "SketchPreviewKit-Swift.h"
+}
