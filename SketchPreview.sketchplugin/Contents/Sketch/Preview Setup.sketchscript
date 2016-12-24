@@ -21,89 +21,112 @@
 
 @import 'lib/common.js'
 
-coscript.shouldKeepAround = true
+// coscript.shouldKeepAround = true
 
-function requestPreviewSize(config, doc) {
+function requestPreviewSize(config, doc, manager) {
   if (!isSupportedVersion(doc)) {
     [doc showMessage:"Sketch 2 is not supported"]
     return
   }
 
-  function _setBorderColor(view, color) {
-    [view setWantsLayer:true]
-    [[view layer] setBorderColor:[color CGColor]]
-    [[view layer] setBorderWidth:1]
-  }
+  // function _setBorderColor(view, color) {
+  //   [view setWantsLayer:true]
+  //   [[view layer] setBorderColor:[color CGColor]]
+  //   [[view layer] setBorderWidth:1]
+  // }
+  //
+  // var cellWidth = 480
+  //
+  // var accessory = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, cellWidth, 160)]
+  //
+  // var matrix = [[NSMatrix alloc] initWithFrame:NSMakeRect(0, 60, cellWidth, 100)
+  //   mode:NSRadioModeMatrix
+  //   cellClass:[NSButtonCell class]
+  //   numberOfRows:config.SCALING_STRATEGIES.length
+  //   numberOfColumns:1
+  // ]
+  // [matrix setCellSize:NSMakeSize(cellWidth, 25)]
+  // config.SCALING_STRATEGIES.forEach(function(strategy, i) {
+  //   var cell = [matrix cells][i]
+  //   [cell setButtonType:NSRadioButton]
+  //   [cell setTitle:strategy.label]
+  //   [cell setTag:strategy.strategyId]
+  // })
+  // [accessory addSubview:matrix]
+  //
+  // var segmentedControl = [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(20, 30, 512, 25)]
+  // [segmentedControl setSegmentCount:config.PREVIEW_SIZE_LABELS.length]
+  // [segmentedControl setEnabled:false]
+  // config.PREVIEW_SIZE_LABELS.forEach(function(sizeLabel, i) {
+  //   [segmentedControl setLabel:sizeLabel forSegment:i]
+  // })
+  // [accessory addSubview:segmentedControl]
+  //
+  // function updateControls(sender) {
+  //   [segmentedControl setEnabled:[matrix selectedCell] == [matrix cellAtRow:3 column:0]]
+  // }
+  // [matrix setCOSJSTargetFunction:updateControls]
+  //
+  // [matrix selectCellWithTag:config.getScalingStrategyId()]
+  // [segmentedControl setSelectedSegment:config.getPreviewSizeLabelIndex()]
+  // updateControls()
+  //
+  // var debugSwitch = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 250, 25)]
+  // [debugSwitch setButtonType:NSSwitchButton]
+  // [debugSwitch setTitle:"Enable debug logging"]
+  // [debugSwitch setState:config.isDebug()]
+  // [accessory addSubview:debugSwitch]
+  //
+  // // _setBorderColor(accessory, [NSColor redColor])
+  // // _setBorderColor(matrix, [NSColor blueColor])
+  // // _setBorderColor(segmentedControl, [NSColor orangeColor])
+  //
+  // var alert = [[NSAlert alloc] init]
+  // [alert setMessageText:"Preview Setup"]
+  // [alert setInformativeText:"* Simulated scaling modes are experimental"]
+  // [alert addButtonWithTitle:"Save"]
+  // [alert addButtonWithTitle:"Cancel"]
+  // [alert setAccessoryView:accessory]
+  //
+  // var buttonReturnValue = [alert runModal]
+  // var previewSizeLabelIndex = [segmentedControl selectedSegment]
+  // var scalingStrategyId = [[matrix selectedCell] tag]
+  // var debugEnabled = [debugSwitch state]
+  //
+  // if (buttonReturnValue === NSAlertFirstButtonReturn) {
+  //   config.setPreviewSizeLabelIndex(previewSizeLabelIndex)
+  //   config.setScalingStrategyId(scalingStrategyId)
+  //   config.setDebug(debugEnabled)
+  //   config.save()
+  // }
 
-  var cellWidth = 480
-
-  var accessory = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, cellWidth, 160)]
-
-  var matrix = [[NSMatrix alloc] initWithFrame:NSMakeRect(0, 60, cellWidth, 100)
-    mode:NSRadioModeMatrix
-    cellClass:[NSButtonCell class]
-    numberOfRows:config.SCALING_STRATEGIES.length
-    numberOfColumns:1
-  ]
-  [matrix setCellSize:NSMakeSize(cellWidth, 25)]
-  config.SCALING_STRATEGIES.forEach(function(strategy, i) {
-    var cell = [matrix cells][i]
-    [cell setButtonType:NSRadioButton]
-    [cell setTitle:strategy.label]
-    [cell setTag:strategy.strategyId]
-  })
-  [accessory addSubview:matrix]
-
-  var segmentedControl = [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(20, 30, 512, 25)]
-  [segmentedControl setSegmentCount:config.PREVIEW_SIZE_LABELS.length]
-  [segmentedControl setEnabled:false]
-  config.PREVIEW_SIZE_LABELS.forEach(function(sizeLabel, i) {
-    [segmentedControl setLabel:sizeLabel forSegment:i]
-  })
-  [accessory addSubview:segmentedControl]
-
-  function updateControls(sender) {
-    [segmentedControl setEnabled:[matrix selectedCell] == [matrix cellAtRow:3 column:0]]
-  }
-  [matrix setCOSJSTargetFunction:updateControls]
-
-  [matrix selectCellWithTag:config.getScalingStrategyId()]
-  [segmentedControl setSelectedSegment:config.getPreviewSizeLabelIndex()]
-  updateControls()
-
-  var debugSwitch = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 250, 25)]
-  [debugSwitch setButtonType:NSSwitchButton]
-  [debugSwitch setTitle:"Enable debug logging"]
-  [debugSwitch setState:config.isDebug()]
-  [accessory addSubview:debugSwitch]
-
-  // _setBorderColor(accessory, [NSColor redColor])
-  // _setBorderColor(matrix, [NSColor blueColor])
-  // _setBorderColor(segmentedControl, [NSColor orangeColor])
-
-  var alert = [[NSAlert alloc] init]
-  [alert setMessageText:"Preview Setup"]
-  [alert setInformativeText:"* Simulated scaling modes are experimental"]
-  [alert addButtonWithTitle:"Save"]
-  [alert addButtonWithTitle:"Cancel"]
-  [alert setAccessoryView:accessory]
-
-  var buttonReturnValue = [alert runModal]
-  var previewSizeLabelIndex = [segmentedControl selectedSegment]
-  var scalingStrategyId = [[matrix selectedCell] tag]
-  var debugEnabled = [debugSwitch state]
-
-  if (buttonReturnValue === NSAlertFirstButtonReturn) {
-    config.setPreviewSizeLabelIndex(previewSizeLabelIndex)
-    config.setScalingStrategyId(scalingStrategyId)
-    config.setDebug(debugEnabled)
-    config.save()
-  }
+  var result = manager.setup()
+  log('result: ' + result)
 }
 
 function onRun(context) {
   var config = new Config()
   var doc = context.document
-  requestPreviewSize(config, doc)
+
+  var scriptPath = context.scriptPath;
+  // var pluginRoot = [[[scriptPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent] stringByAppendingPathComponent:'Frameworks'];
+  // var pluginRoot = [scriptPath stringByDeletingLastPathComponent]
+  var pluginRoot = '/Users/marc/Library/Developer/Xcode/DerivedData/SketchPreview-blhvkbkiixobvsapsblvkfpkhhgl/Build/Products/Debug'
+  log('pluginRoot: ' + pluginRoot)
+  var frameworkLoadStatus = loadFramework(pluginRoot);
+  log('frameworkLoadStatus: ' + frameworkLoadStatus)
+
+  // log([[TestClass alloc] init])
+  log(objc.classes())
+  var SetupManager = NSClassFromString('SketchPreviewKit.SetupManager')
+  requestPreviewSize(config, doc, SetupManager.shared())
 }
 
+function loadFramework(pluginRoot) {
+  if (NSClassFromString('SetupManager') == null) {
+    var mocha = [Mocha sharedRuntime];
+    return [mocha loadFrameworkWithName:'SketchPreviewKit' inDirectory:pluginRoot];
+  } else {
+    return true;
+  }
+}
