@@ -5,6 +5,7 @@
 SKETCH_PLUGIN_DIR="$HOME/Library/Application Support/com.bohemiancoding.sketch3/Plugins/"
 
 if [ -d "$SKETCH_PLUGIN_DIR" ]; then
+  rm -rf "$SKETCH_PLUGIN_DIR/SketchPreview.sketchplugin"
   cp -Rv SketchPreview.sketchplugin "$SKETCH_PLUGIN_DIR"
 fi
 

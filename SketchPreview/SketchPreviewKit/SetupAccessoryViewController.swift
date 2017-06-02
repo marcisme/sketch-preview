@@ -10,9 +10,22 @@ import Cocoa
 
 class SetupAccessoryViewController: NSViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
+    @IBOutlet weak var autoScaleButton: NSButton!
+    @IBOutlet weak var simulateSixButton: NSButton!
+    @IBOutlet weak var simulateSixPlusButton: NSButton!
+    @IBOutlet weak var explicitScaleButton: NSButton!
+    @IBOutlet weak var explicitSizeSegmentedControl: NSSegmentedControl!
+    @IBOutlet weak var debugLoggingButton: NSButton!
+
+    var config: [String: Any] {
+        get {
+            return [
+                "previewSizeIndex": -1,
+                "scalingStrategyId": -1,
+                "debug": false
+            ]
+        }
+        set {
+        }
     }
-    
 }

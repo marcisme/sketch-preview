@@ -125,7 +125,7 @@ SWIFT_CLASS("_TtC16SketchPreviewKit12SetupManager")
 @interface SetupManager : NSObject
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) SetupManager * _Nonnull shared;)
 + (SetupManager * _Nonnull)shared;
-- (NSDictionary<NSString *, id> * _Nonnull)setup;
+- (NSDictionary<NSString *, id> * _Nullable)setupWithConfig:(NSDictionary<NSString *, id> * _Nonnull)config;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

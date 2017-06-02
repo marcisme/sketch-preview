@@ -109,9 +109,9 @@ function onRun(context) {
   var doc = context.document
 
   var scriptPath = context.scriptPath;
-  // var pluginRoot = [[[scriptPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent] stringByAppendingPathComponent:'Frameworks'];
+  var pluginRoot = [[[scriptPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent] stringByAppendingPathComponent:'Frameworks'];
   // var pluginRoot = [scriptPath stringByDeletingLastPathComponent]
-  var pluginRoot = '/Users/marc/Library/Developer/Xcode/DerivedData/SketchPreview-blhvkbkiixobvsapsblvkfpkhhgl/Build/Products/Debug'
+  // var pluginRoot = '/Users/marc/Library/Developer/Xcode/DerivedData/SketchPreview-blhvkbkiixobvsapsblvkfpkhhgl/Build/Products/Debug'
   log('pluginRoot: ' + pluginRoot)
   var frameworkLoadStatus = loadFramework(pluginRoot);
   log('frameworkLoadStatus: ' + frameworkLoadStatus)

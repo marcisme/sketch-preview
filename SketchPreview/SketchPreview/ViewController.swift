@@ -24,9 +24,11 @@ class ViewController: NSViewController {
     }
 
     @IBAction func setup(_ sender: NSButton) {
-        let config = SetupManager.shared.setup()
-        print(config)
+        if let config = SetupManager.shared.setup(config: [:]) {
+            print(config)
+        } else {
+            print("cancelled")
+        }
     }
 
 }
-

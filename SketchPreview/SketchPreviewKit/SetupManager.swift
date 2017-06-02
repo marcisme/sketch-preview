@@ -8,11 +8,13 @@
 
 import Cocoa
 
+public typealias Config = [String: Any]
+
 public class SetupManager: NSObject {
 
     public static let shared = SetupManager()
 
-    public func setup() -> [String: Any] {
+    public func setup(config: Config) -> Config? {
         let alert = NSAlert()
         alert.messageText = "Preview Setup"
         alert.informativeText = "* Simulated scaling modes are experimental"
@@ -25,11 +27,6 @@ public class SetupManager: NSObject {
 
         alert.runModal()
 
-        return [
-            "foo": "FOO",
-            "bar": 1,
-            "baz": true
-        ]
+        return setupAccessoryViewController.config
     }
-
 }
