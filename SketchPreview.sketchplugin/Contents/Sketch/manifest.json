@@ -3,9 +3,10 @@
   "description": "Preview Artboards in Skala Preview",
   "author": "Marc Schwieterman",
   "homepage": "https://github.com/marcisme/sketch-preview",
-  "version": "0.10.3",
+  "version": "0.11.0",
   "identifier": "com.marcisme.sketch-preview",
-  "compatibleVersion": "3.8.3",
+  "appcast": "https://raw.githubusercontent.com/marcisme/sketch-preview/master/appcast.xml",
+  "compatibleVersion": "45",
   "bundleVersion": 1,
   "commands": [{
     "name": "Preview",

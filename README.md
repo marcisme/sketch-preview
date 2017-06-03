@@ -5,7 +5,7 @@ command (⌘P) that will export the currently selected Artboard at a configurabl
 preview size (⌘⌥P) and open the resulting image file in [Skala
 Preview](http://bjango.com/mac/skalapreview).
 
-## *NEW* Auto Preview
+## Auto Preview
 
 You can now toggle Auto Preview mode on and off with ⌘\^P to automatically
 preview the current Artboard whenever certain changes are made.
@@ -17,6 +17,11 @@ via the `Plugin` menu or ⌘P.
 
 [Download](https://github.com/marcisme/sketch-preview/archive/master.zip) or
 clone the latest version of this project, and open `SketchPreview.sketchplugin`.
+
+## Auto Update
+
+The Sketch auto update feature coming in version 45 is supported as of
+`v0.11.0`.
 
 # Usage
 
@@ -42,8 +47,8 @@ you some idea of the latest versions that have worked for other people. Feel
 free to submit a [pull request](https://github.com/marcisme/sketch-preview/compare/)
 if you've used the plugin with a newer version of any of these applications.
 
-* Sketch Version 40.3 (33839)
-* Sketch Beta Version 41 (35299)
+* Sketch Version 44.1 (41455)
+* Sketch Beta Version 45 (43187)
 * Skala Preview 2.0 (207)
 * Skala View for iOS 2.0
 * Skala View for Android 2.0

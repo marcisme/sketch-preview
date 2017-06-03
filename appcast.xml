@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Sketch Preview</title>
+    <link>https://raw.githubusercontent.com/marcisme/sketch-preview/master/appcast.xml</link>
+    <description>Sketch plugin to preview mockups in Skala Preview</description>
+    <language>en</language>
+      <item>
+        <title>Version 0.11.0</title>
+        <description>
+          <![CDATA[
+            <ul>
+            <li>Minor update v0.11.0</li>
+            </ul>
+          ]]>
+        </description>
+        <pubDate>Fri, 02 Jun 2017 18:00:00 +0800</pubDate>
+        <enclosure url="https://github.com/marcisme/sketch-preview/blob/master/releases/v0.11.0.zip?raw=true" sparkle:version="0.11.0" length="10751" type="application/octet-stream" />
+      </item>
+  </channel>
+</rss>

@@ -1,3 +1,7 @@
+# v0.11.0
+
+* Support autoupdate
+
 # v0.10.3
 
 * Update for MSExportRequest changes in beta41
