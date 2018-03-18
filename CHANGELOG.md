@@ -1,3 +1,7 @@
+# v0.12.0
+
+* Change preview shortcut to `⌘⇧P` to avoid conflict with native Prototype command
+
 # v0.11.0
 
 * Support autoupdate

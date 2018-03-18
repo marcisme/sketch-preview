@@ -1,7 +1,7 @@
 # Introduction
 
 This [Sketch](http://bohemiancoding.com/sketch) plugin provides a preview
-command (⌘P) that will export the currently selected Artboard at a configurable
+command (⌘⇧P) that will export the currently selected Artboard at a configurable
 preview size (⌘⌥P) and open the resulting image file in [Skala
 Preview](http://bjango.com/mac/skalapreview).
 
@@ -11,7 +11,7 @@ You can now toggle Auto Preview mode on and off with ⌘\^P to automatically
 preview the current Artboard whenever certain changes are made.
 
 You can always initiate a preview by changing the current selection or directly
-via the `Plugin` menu or ⌘P.
+via the `Plugin` menu or ⌘⇧P.
 
 # Installation
 
@@ -26,7 +26,7 @@ The Sketch auto update feature coming in version 45 is supported as of
 # Usage
 
 * Make sure you have an Artboard selected
-* Select `Preview` from the Plugins menu or press ⌘P
+* Select `Preview` from the Plugins menu or press ⌘⇧P
 * Select `Preview Setup...` from the plugins menu or Press ⌘⌥P to configure the
   plugin
 
@@ -47,8 +47,7 @@ you some idea of the latest versions that have worked for other people. Feel
 free to submit a [pull request](https://github.com/marcisme/sketch-preview/compare/)
 if you've used the plugin with a newer version of any of these applications.
 
-* Sketch Version 44.1 (41455)
-* Sketch Beta Version 45 (43187)
+* Sketch Version 49.1 (51147)
 * Skala Preview 2.0 (207)
 * Skala View for iOS 2.0
 * Skala View for Android 2.0
