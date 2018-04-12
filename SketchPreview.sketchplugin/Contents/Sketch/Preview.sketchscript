@@ -21,7 +21,7 @@
 
 @import 'lib/common.js'
 
-coscript.shouldKeepAround = true
+// coscript.shouldKeepAround = true
 
 // configuration
 
@@ -94,10 +94,67 @@ function isPreviewTarget(name) {
   return [name localizedCaseInsensitiveCompare:PREVIEW_TARGET_NAME] == NSOrderedSame
 }
 
+var sketch = require('sketch/dom')
+
 function writeAndOpenPreviewFile(previewTarget, doc) {
-  var previewFilePath = getPreviewFilePath()
+  logger.debug("OMGHI " + [[doc colorSpace] localizedName])
+  var version = [[[NSBundle mainBundle] infoDictionary] valueForKey:"CFBundleShortVersionString"]
+  var displayName = [doc displayName] + "_" + version
+
+  var previewFilePath = getPreviewFilePath(displayName + "_MSExportRequest_saveForWeb_default.png")
   logger.debug("writing preview image to: " + previewFilePath)
+  var rect = [[previewTarget absoluteRect] rect]
+  var size = config.getScalingStrategy().sizeForRect(rect)
+  var request = [MSExportRequest new]
+  request.rect = rect
+  request.scale = size
+  // request.saveForWeb = true
+  logger.debug(request.saveForWeb())
   [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
+
+  var previewFilePath = getPreviewFilePath(displayName + "_MSExportRequest_saveForWeb_false.png")
+  logger.debug("writing preview image to: " + previewFilePath)
+  var rect = [[previewTarget absoluteRect] rect]
+  var size = config.getScalingStrategy().sizeForRect(rect)
+  var request = [MSExportRequest new]
+  request.rect = rect
+  request.scale = size
+  request.saveForWeb = false
+  logger.debug(request.saveForWeb())
+  [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
+
+  var previewFilePath = getPreviewFilePath(displayName + "_MSExportRequest_saveForWeb_true.png")
+  logger.debug("writing preview image to: " + previewFilePath)
+  var rect = [[previewTarget absoluteRect] rect]
+  var size = config.getScalingStrategy().sizeForRect(rect)
+  var request = [MSExportRequest new]
+  request.rect = rect
+  request.scale = size
+  request.saveForWeb = true
+  logger.debug(request.saveForWeb())
+  [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
+
+  var options = { "output": getPreviewDirectory() }
+  sketch.export(previewTarget, options)
+  var srcPreviewFilePath = getPreviewDirectory() + "/Artboard.png"
+  var previewFilePath = getPreviewFilePath(displayName + "_API_saveForWeb_default.png")
+  logger.debug("writing preview image to: " + previewFilePath)
+  [[NSFileManager defaultManager] moveItemAtPath:srcPreviewFilePath toPath:previewFilePath error:null]
+
+  var options = { "output": getPreviewDirectory(), "save-for-web": false }
+  sketch.export(previewTarget, options)
+  var srcPreviewFilePath = getPreviewDirectory() + "/Artboard.png"
+  var previewFilePath = getPreviewFilePath(displayName + "_API_saveForWeb_false.png")
+  logger.debug("writing preview image to: " + previewFilePath)
+  [[NSFileManager defaultManager] moveItemAtPath:srcPreviewFilePath toPath:previewFilePath error:null]
+
+  var options = { "output": getPreviewDirectory(), "save-for-web": true }
+  sketch.export(previewTarget, options)
+  var srcPreviewFilePath = getPreviewDirectory() + "/Artboard.png"
+  var previewFilePath = getPreviewFilePath(displayName + "_API_saveForWeb_true.png")
+  logger.debug("writing preview image to: " + previewFilePath)
+  [[NSFileManager defaultManager] moveItemAtPath:srcPreviewFilePath toPath:previewFilePath error:null]
+
   openPreviewFile(previewFilePath, doc)
 }
 
@@ -108,11 +165,12 @@ function resizedPreviewTarget(layer) {
   var request = [MSExportRequest new]
   request.rect = rect
   request.scale = size
+  request.saveForWeb = true
   return request
 }
 
-function getPreviewFilePath() {
-  return getPreviewDirectory() + "/" + PREVIEW_FILE_NAME
+function getPreviewFilePath(filename) {
+  return getPreviewDirectory() + "/" + filename
 }
 
 function getPreviewDirectory() {
