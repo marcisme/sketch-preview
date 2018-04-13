@@ -1,11 +1,11 @@
-Image: Sketch_sRGB_no_profile.png
+Image: Acorn_sRGB_no_profile.png
   Format: PNG (Portable Network Graphics)
   Mime type: image/png
   Class: DirectClass
   Geometry: 400x100+0+0
   Units: Undefined
   Colorspace: sRGB
-  Type: PaletteAlpha
+  Type: Palette
   Base type: Undefined
   Endianess: Undefined
   Depth: 8-bit
@@ -13,7 +13,6 @@ Image: Sketch_sRGB_no_profile.png
     Red: 8-bit
     Green: 8-bit
     Blue: 8-bit
-    Alpha: 1-bit
   Channel statistics:
     Pixels: 40000
     Red:
@@ -40,31 +39,23 @@ Image: Sketch_sRGB_no_profile.png
       kurtosis: -0.880233
       skewness: 0.746447
       entropy: 1
-    Alpha:
-      min: 255  (1)
-      max: 255 (1)
-      mean: 255 (1)
-      standard deviation: 0 (0)
-      kurtosis: 8.192e+63
-      skewness: 1e+45
-      entropy: 0
   Image statistics:
     Overall:
       min: 0  (0)
       max: 255 (1)
-      mean: 119.875 (0.470098)
-      standard deviation: 45.5042 (0.178448)
-      kurtosis: -1.62436
-      skewness: 0.279492
-      entropy: 0.736599
+      mean: 74.8333 (0.293464)
+      standard deviation: 60.6722 (0.23793)
+      kurtosis: 0.0211965
+      skewness: 1.08093
+      entropy: 0.982132
   Colors: 4
   Histogram:
-     10000: ( 12, 34, 56,255) #0C2238FF srgba(12,34,56,1)
-     10000: (102,  0,204,255) #6600CCFF srgba(102,0,204,1)
-     10000: (123, 45, 67,255) #7B2D43FF srgba(123,45,67,1)
-     10000: (255,  0,  0,255) #FF0000FF red
+     10000: ( 12, 34, 56) #0C2238 srgb(12,34,56)
+     10000: (102,  0,204) #6600CC srgb(102,0,204)
+     10000: (123, 45, 67) #7B2D43 srgb(123,45,67)
+     10000: (255,  0,  0) #FF0000 red
   Rendering intent: Perceptual
-  Gamma: 0.45455
+  Gamma: 0.454545
   Chromaticity:
     red primary: (0.64,0.33)
     green primary: (0.3,0.6)
@@ -84,20 +75,19 @@ Image: Sketch_sRGB_no_profile.png
   Orientation: Undefined
   Properties:
     date:create: 2018-04-13T14:06:51-07:00
-    date:modify: 2018-04-13T12:45:30-07:00
-    png:gAMA: gamma=0.45454544 (See Gamma, above)
+    date:modify: 2018-04-13T12:37:17-07:00
     png:IHDR.bit-depth-orig: 8
     png:IHDR.bit_depth: 8
-    png:IHDR.color-type-orig: 6
-    png:IHDR.color_type: 6 (RGBA)
+    png:IHDR.color-type-orig: 2
+    png:IHDR.color_type: 2 (Truecolor)
     png:IHDR.interlace_method: 0 (Not interlaced)
     png:IHDR.width,height: 400, 100
     png:sRGB: intent=0 (Perceptual Intent)
-    signature: dc2d1b50f4bface86767a023dafe1d7d99d70e2d11190fdf82dfce0378bd100d
+    signature: 62fcd571657034ec5b879a6f90fca6cd08191cd3b7cd3a828c6c66917f04d9a3
   Artifacts:
     verbose: true
   Tainted: False
-  Filesize: 1025B
+  Filesize: 347B
   Number pixels: 40000
   User time: 0.000u
   Elapsed time: 0:01.000

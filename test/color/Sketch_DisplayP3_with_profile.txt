@@ -1,4 +1,4 @@
-Image: Sketch_sRGB_no_profile.png
+Image: Sketch_DisplayP3_with_profile.png
   Format: PNG (Portable Network Graphics)
   Mime type: image/png
   Class: DirectClass
@@ -64,7 +64,7 @@ Image: Sketch_sRGB_no_profile.png
      10000: (123, 45, 67,255) #7B2D43FF srgba(123,45,67,1)
      10000: (255,  0,  0,255) #FF0000FF red
   Rendering intent: Perceptual
-  Gamma: 0.45455
+  Gamma: 0.454545
   Chromaticity:
     red primary: (0.64,0.33)
     green primary: (0.3,0.6)
@@ -84,20 +84,21 @@ Image: Sketch_sRGB_no_profile.png
   Orientation: Undefined
   Properties:
     date:create: 2018-04-13T14:06:51-07:00
-    date:modify: 2018-04-13T12:45:30-07:00
-    png:gAMA: gamma=0.45454544 (See Gamma, above)
+    date:modify: 2018-04-13T13:37:04-07:00
+    png:iCCP: chunk was found
     png:IHDR.bit-depth-orig: 8
     png:IHDR.bit_depth: 8
     png:IHDR.color-type-orig: 6
     png:IHDR.color_type: 6 (RGBA)
     png:IHDR.interlace_method: 0 (Not interlaced)
     png:IHDR.width,height: 400, 100
-    png:sRGB: intent=0 (Perceptual Intent)
     signature: dc2d1b50f4bface86767a023dafe1d7d99d70e2d11190fdf82dfce0378bd100d
+  Profiles:
+    Profile-icc: 548 bytes
   Artifacts:
     verbose: true
   Tainted: False
-  Filesize: 1025B
+  Filesize: 1374B
   Number pixels: 40000
   User time: 0.000u
   Elapsed time: 0:01.000

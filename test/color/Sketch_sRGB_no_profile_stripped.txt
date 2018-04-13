@@ -80,7 +80,7 @@ Image: Sketch_sRGB_no_profile_stripped.png
   Compression: Zip
   Orientation: Undefined
   Properties:
-    date:create: 2018-04-13T13:47:37-07:00
+    date:create: 2018-04-13T14:06:51-07:00
     date:modify: 2018-04-13T13:47:19-07:00
     png:IHDR.bit-depth-orig: 2
     png:IHDR.bit_depth: 2

@@ -1,4 +1,4 @@
-Image: Sketch_sRGB_no_profile.png
+Image: Sketch_sRGB_with_profile.png
   Format: PNG (Portable Network Graphics)
   Mime type: image/png
   Class: DirectClass
@@ -84,8 +84,9 @@ Image: Sketch_sRGB_no_profile.png
   Orientation: Undefined
   Properties:
     date:create: 2018-04-13T14:06:51-07:00
-    date:modify: 2018-04-13T12:45:30-07:00
-    png:gAMA: gamma=0.45454544 (See Gamma, above)
+    date:modify: 2018-04-13T12:45:01-07:00
+    png:cHRM: chunk was found (see Chromaticity, above)
+    png:gAMA: gamma=0.45455 (See Gamma, above)
     png:IHDR.bit-depth-orig: 8
     png:IHDR.bit_depth: 8
     png:IHDR.color-type-orig: 6
@@ -97,7 +98,7 @@ Image: Sketch_sRGB_no_profile.png
   Artifacts:
     verbose: true
   Tainted: False
-  Filesize: 1025B
+  Filesize: 1022B
   Number pixels: 40000
   User time: 0.000u
   Elapsed time: 0:01.000
