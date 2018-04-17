@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Timeline
+   version = "3.0">
+   <TimelineItems>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/marc/src/playgrounds/NSImagePNGRepro.playground#CharacterRangeLen=45&amp;CharacterRangeLoc=187&amp;EndingColumnNumber=0&amp;EndingLineNumber=12&amp;StartingColumnNumber=19&amp;StartingLineNumber=7&amp;Timestamp=545695776.196227"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/marc/src/playgrounds/NSImagePNGRepro.playground#CharacterRangeLen=19&amp;CharacterRangeLoc=169&amp;EndingColumnNumber=0&amp;EndingLineNumber=8&amp;StartingColumnNumber=1&amp;StartingLineNumber=7&amp;Timestamp=545695776.1964459"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/marc/src/playgrounds/NSImagePNGRepro.playground#CharacterRangeLen=20&amp;CharacterRangeLoc=190&amp;EndingColumnNumber=0&amp;EndingLineNumber=10&amp;StartingColumnNumber=1&amp;StartingLineNumber=9&amp;Timestamp=545695776.196566"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/marc/src/playgrounds/NSImagePNGRepro.playground#CharacterRangeLen=20&amp;CharacterRangeLoc=212&amp;EndingColumnNumber=0&amp;EndingLineNumber=12&amp;StartingColumnNumber=1&amp;StartingLineNumber=11&amp;Timestamp=545695776.196715"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+   </TimelineItems>
+</Timeline>
