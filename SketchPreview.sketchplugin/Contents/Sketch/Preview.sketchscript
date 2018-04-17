@@ -21,7 +21,7 @@
 
 @import 'lib/common.js'
 
-coscript.shouldKeepAround = true
+// coscript.shouldKeepAround = true
 
 // configuration
 
@@ -98,6 +98,19 @@ function writeAndOpenPreviewFile(previewTarget, doc) {
   var previewFilePath = getPreviewFilePath()
   logger.debug("writing preview image to: " + previewFilePath)
   [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
+
+  // var mocha = [Mocha sharedRuntime]
+  // var result = [mocha loadFrameworkWithName:'ImageIO']
+  // framework('CoreFoundation')
+  framework('ImageIO')
+  var url = [NSURL fileURLWithPath:previewFilePath]
+  var source = CGImageSourceCreateWithURL(url, null)
+  var props = CGImageSourceCopyPropertiesAtIndex(source, 0, null)
+  // var keys = MOPointer.alloc().init()
+  // var values = MOPointer.alloc().init()
+  // CFDictionaryGetKeysAndValues(props.value(), keys, values)
+  logger.debug("props: " + [props class])
+
   openPreviewFile(previewFilePath, doc)
 }
 
