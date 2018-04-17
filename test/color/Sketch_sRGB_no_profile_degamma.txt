@@ -1,0 +1,94 @@
+Image: Sketch_sRGB_no_profile_degamma.png
+  Format: PNG (Portable Network Graphics)
+  Mime type: image/png
+  Class: DirectClass
+  Geometry: 400x100+0+0
+  Units: Undefined
+  Colorspace: sRGB
+  Type: Palette
+  Base type: Undefined
+  Endianess: Undefined
+  Depth: 8-bit
+  Channel depth:
+    Red: 8-bit
+    Green: 8-bit
+    Blue: 8-bit
+  Channel statistics:
+    Pixels: 40000
+    Red:
+      min: 12  (0.0470588)
+      max: 255 (1)
+      mean: 123 (0.482353)
+      standard deviation: 86.8717 (0.340673)
+      kurtosis: -1.0001
+      skewness: 0.352
+      entropy: 1
+    Green:
+      min: 0  (0)
+      max: 45 (0.176471)
+      mean: 19.75 (0.077451)
+      standard deviation: 20.1295 (0.0789393)
+      kurtosis: -1.85492
+      skewness: 0.109871
+      entropy: 0.946395
+    Blue:
+      min: 0  (0)
+      max: 204 (0.8)
+      mean: 81.75 (0.320588)
+      standard deviation: 75.0155 (0.294179)
+      kurtosis: -0.880233
+      skewness: 0.746447
+      entropy: 1
+  Image statistics:
+    Overall:
+      min: 0  (0)
+      max: 255 (1)
+      mean: 74.8333 (0.293464)
+      standard deviation: 60.6722 (0.23793)
+      kurtosis: 0.0211965
+      skewness: 1.08093
+      entropy: 0.982132
+  Colors: 4
+  Histogram:
+     10000: ( 12, 34, 56) #0C2238 srgb(12,34,56)
+     10000: (102,  0,204) #6600CC srgb(102,0,204)
+     10000: (123, 45, 67) #7B2D43 srgb(123,45,67)
+     10000: (255,  0,  0) #FF0000 red
+  Rendering intent: Perceptual
+  Gamma: 0.454545
+  Chromaticity:
+    red primary: (0.64,0.33)
+    green primary: (0.3,0.6)
+    blue primary: (0.15,0.06)
+    white point: (0.3127,0.329)
+  Matte color: grey74
+  Background color: white
+  Border color: srgb(223,223,223)
+  Transparent color: none
+  Interlace: None
+  Intensity: Undefined
+  Compose: Over
+  Page geometry: 400x100+0+0
+  Dispose: Undefined
+  Iterations: 0
+  Compression: Zip
+  Orientation: Undefined
+  Properties:
+    date:create: 2018-04-16T16:51:03-07:00
+    date:modify: 2018-04-16T16:51:03-07:00
+    png:IHDR.bit-depth-orig: 8
+    png:IHDR.bit_depth: 8
+    png:IHDR.color-type-orig: 2
+    png:IHDR.color_type: 2 (Truecolor)
+    png:IHDR.interlace_method: 0 (Not interlaced)
+    png:IHDR.width,height: 400, 100
+    png:sRGB: intent=0 (Perceptual Intent)
+    signature: 62fcd571657034ec5b879a6f90fca6cd08191cd3b7cd3a828c6c66917f04d9a3
+  Artifacts:
+    verbose: true
+  Tainted: False
+  Filesize: 347B
+  Number pixels: 40000
+  User time: 0.000u
+  Elapsed time: 0:01.000
+  Version: ImageMagick 7.0.7-28 Q16 x86_64 2018-03-25 http://www.imagemagick.org
