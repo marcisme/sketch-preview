@@ -29,7 +29,7 @@ var PREVIEW_APPLICATION = "Skala Preview"
 var PREVIEW_TARGET_NAME = "Preview"
 
 var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview"
-var PREVIEW_FILE_NAME = "preview.png"
+var PREVIEW_FILE_NAME = "preview.tiff"
 var config = new Config()
 var logger = new Logger(config.isDebug())
 
