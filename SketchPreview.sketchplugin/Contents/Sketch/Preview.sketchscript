@@ -101,7 +101,7 @@ function writeAndOpenPreviewFile(previewTarget, doc) {
   var version = [[[NSBundle mainBundle] infoDictionary] valueForKey:"CFBundleShortVersionString"]
   var displayName = [doc displayName] + "_" + version
 
-  var previewFilePath = getPreviewFilePath(displayName + "_MSExportRequest_saveForWeb_default.png")
+  var previewFilePath = getPreviewFilePath(displayName + "_MSExportRequest_saveForWeb_default.tiff")
   logger.debug("writing preview image to: " + previewFilePath)
   var rect = [[previewTarget absoluteRect] rect]
   var size = config.getScalingStrategy().sizeForRect(rect)
@@ -112,7 +112,7 @@ function writeAndOpenPreviewFile(previewTarget, doc) {
   logger.debug(request.saveForWeb())
   [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
 
-  var previewFilePath = getPreviewFilePath(displayName + "_MSExportRequest_saveForWeb_false.png")
+  var previewFilePath = getPreviewFilePath(displayName + "_MSExportRequest_saveForWeb_false.tiff")
   logger.debug("writing preview image to: " + previewFilePath)
   var rect = [[previewTarget absoluteRect] rect]
   var size = config.getScalingStrategy().sizeForRect(rect)
@@ -123,7 +123,7 @@ function writeAndOpenPreviewFile(previewTarget, doc) {
   logger.debug(request.saveForWeb())
   [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
 
-  var previewFilePath = getPreviewFilePath(displayName + "_MSExportRequest_saveForWeb_true.png")
+  var previewFilePath = getPreviewFilePath(displayName + "_MSExportRequest_saveForWeb_true.tiff")
   logger.debug("writing preview image to: " + previewFilePath)
   var rect = [[previewTarget absoluteRect] rect]
   var size = config.getScalingStrategy().sizeForRect(rect)
@@ -134,28 +134,28 @@ function writeAndOpenPreviewFile(previewTarget, doc) {
   logger.debug(request.saveForWeb())
   [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
 
-  var options = { "output": getPreviewDirectory() }
+  var options = { "output": getPreviewDirectory(), "formats": "tiff" }
   sketch.export(previewTarget, options)
-  var srcPreviewFilePath = getPreviewDirectory() + "/Artboard.png"
-  var previewFilePath = getPreviewFilePath(displayName + "_API_saveForWeb_default.png")
+  var srcPreviewFilePath = getPreviewDirectory() + "/Artboard.tiff"
+  var previewFilePath = getPreviewFilePath(displayName + "_API_saveForWeb_default.tiff")
   logger.debug("writing preview image to: " + previewFilePath)
   [[NSFileManager defaultManager] moveItemAtPath:srcPreviewFilePath toPath:previewFilePath error:null]
 
-  var options = { "output": getPreviewDirectory(), "save-for-web": false }
+  var options = { "output": getPreviewDirectory(), "save-for-web": false, "formats": "tiff" }
   sketch.export(previewTarget, options)
-  var srcPreviewFilePath = getPreviewDirectory() + "/Artboard.png"
-  var previewFilePath = getPreviewFilePath(displayName + "_API_saveForWeb_false.png")
+  var srcPreviewFilePath = getPreviewDirectory() + "/Artboard.tiff"
+  var previewFilePath = getPreviewFilePath(displayName + "_API_saveForWeb_false.tiff")
   logger.debug("writing preview image to: " + previewFilePath)
   [[NSFileManager defaultManager] moveItemAtPath:srcPreviewFilePath toPath:previewFilePath error:null]
 
-  var options = { "output": getPreviewDirectory(), "save-for-web": true }
+  var options = { "output": getPreviewDirectory(), "save-for-web": true, "formats": "tiff" }
   sketch.export(previewTarget, options)
-  var srcPreviewFilePath = getPreviewDirectory() + "/Artboard.png"
-  var previewFilePath = getPreviewFilePath(displayName + "_API_saveForWeb_true.png")
+  var srcPreviewFilePath = getPreviewDirectory() + "/Artboard.tiff"
+  var previewFilePath = getPreviewFilePath(displayName + "_API_saveForWeb_true.tiff")
   logger.debug("writing preview image to: " + previewFilePath)
   [[NSFileManager defaultManager] moveItemAtPath:srcPreviewFilePath toPath:previewFilePath error:null]
 
-  openPreviewFile(previewFilePath, doc)
+  // openPreviewFile(previewFilePath, doc)
 }
 
 function resizedPreviewTarget(layer) {
