@@ -29,5 +29,17 @@
         <pubDate>Sun, 18 Mar 2018 10:00:00 +0800</pubDate>
         <enclosure url="https://github.com/marcisme/sketch-preview/blob/master/releases/v0.12.0.zip?raw=true" sparkle:version="0.12.0" length="11164" type="application/octet-stream" />
       </item>
+      <item>
+        <title>Version 0.13.0</title>
+        <description>
+          <![CDATA[
+            <ul>
+            <li>Use TIFF instead of PNG to fix color issues</li>
+            </ul>
+          ]]>
+        </description>
+        <pubDate>Thu, 19 Apr 2018 13:00:00 +0800</pubDate>
+        <enclosure url="https://github.com/marcisme/sketch-preview/blob/master/releases/v0.13.0.zip?raw=true" sparkle:version="0.13.0" length="11555" type="application/octet-stream" />
+      </item>
   </channel>
 </rss>
