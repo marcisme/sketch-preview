@@ -35,7 +35,7 @@ function requestPreviewSize(config, doc) {
     [[view layer] setBorderWidth:1]
   }
 
-  var cellWidth = 480
+  var cellWidth = 540
 
   var accessory = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, cellWidth, 160)]
 
