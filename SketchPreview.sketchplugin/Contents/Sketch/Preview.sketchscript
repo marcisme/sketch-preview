@@ -32,6 +32,7 @@ var PREVIEW_DIRECTORY_NAME = "com.marcisme.sketch-preview"
 var PREVIEW_FILE_NAME = "preview.tiff"
 var config = new Config()
 var logger = new Logger(config.isDebug())
+var sketch = require('sketch/dom')
 
 // preview functions
 
@@ -95,24 +96,70 @@ function isPreviewTarget(name) {
 }
 
 function writeAndOpenPreviewFile(previewTarget, doc) {
-  var previewFilePath = getPreviewFilePath()
-  logger.debug("writing preview image to: " + previewFilePath)
-  [doc saveArtboardOrSlice:resizedPreviewTarget(previewTarget) toFile:previewFilePath]
-  openPreviewFile(previewFilePath, doc)
+  var scale = getPreviewScale(previewTarget)
+  var options = getExportOptions(getPreviewDirectory(), scale)
+
+  logger.debug("exporting artboard \"" + previewTarget.name() + "\" to directory: " + getPreviewDirectory())
+  sketch.export(previewTarget, options)
+
+  var files = getImageFiles(previewTarget)
+
+  var previewFile = getPreviewFilePath(files.shift())
+  logger.debug("opening " + previewFile)
+  openPreviewFile(previewFile, doc)
+
+  for (var i = 0; i < files.length; i++) {
+    var file = files[i]
+    var oldFile = getPreviewFilePath(file)
+    logger.debug("deleting " + oldFile)
+    [[NSFileManager defaultManager] removeItemAtPath:oldFile error:null]
+  }
 }
 
-function resizedPreviewTarget(layer) {
+function getArtboardId(artboard) {
+  var artboardId = sketch.fromNative(artboard)["id"]
+  logger.debug("artboardId: " + artboardId)
+  return artboardId
+}
+
+function getPreviewScale(layer) {
   var rect = [[layer absoluteRect] rect]
   var size = config.getScalingStrategy().sizeForRect(rect)
   logger.debug("preview scale factor: " + size)
-  var request = [MSExportRequest new]
-  request.rect = rect
-  request.scale = size
-  return request
+  return size
 }
 
-function getPreviewFilePath() {
-  return getPreviewDirectory() + "/" + PREVIEW_FILE_NAME
+function getExportOptions(output, scale) {
+  return {
+    "output": output,
+    "save-for-web": false,
+    "formats": "tiff",
+    "use-id-for-name": true,
+    "scales": scale
+  }
+}
+
+// the first file in the returned array is the current preview file
+function getImageFiles(artboard) {
+  var artboardId = getArtboardId(artboard)
+  var files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:getPreviewDirectory() error:nil]
+  var sortedFiles = []
+  for (var i = 0; i < files.length; i++) {
+    var file = files[i]
+    if (!file.endsWith('.tiff')) { continue }
+    if (file.startsWith(artboardId)) {
+      logger.debug("found current preview file: " + file)
+      sortedFiles.unshift(file)
+    } else {
+      logger.debug("found old preview file: " + file)
+      sortedFiles.push(file)
+    }
+  }
+  return sortedFiles
+}
+
+function getPreviewFilePath(fileName) {
+  return getPreviewDirectory() + "/" + fileName
 }
 
 function getPreviewDirectory() {
