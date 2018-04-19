@@ -1,3 +1,7 @@
+# v0.13.0
+
+* Use TIFF instead of PNG to fix color issues
+
 # v0.12.0
 
 * Change preview shortcut to `⌘⇧P` to avoid conflict with native Prototype command
