@@ -70,7 +70,7 @@
         "ToggleFill.finish": "autoPreview",
         "Transform.finish": "autoPreview",
         "Underline.finish": "autoPreview",
-        "Union.finish": "autoPreview",
+        "Union.finish": "autoPreview"
       }
     }
   }, {
